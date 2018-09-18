@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugins>
+
+    <!-- <plugin
+        name="exceptionPlugin"
+        value="com.ailk.ec.unidesk.jt.web.plugins.ECExceptionPlugin" />
+    
+    <plugin
+        name="devicePlugin"
+        value="com.ailk.ec.unidesk.jt.web.plugins.ECGetDeviceInfoPlugin" />
+    
+    <plugin
+        name="locationPlugin"
+        value="com.ailk.ec.unidesk.jt.web.plugins.ECGetLocationPlugin" />
+    
+    <plugin
+        name="imagePlugin"
+        value="com.ailk.ec.unidesk.jt.web.plugins.ECUpLoadPicPlugin" />
+    
+    <plugin
+        name="IDCardReadPlugin"
+        value="com.ailk.ec.unidesk.jt.web.plugins.ECNFCPlugin"></plugin>
+ -->
+    <plugin 
+        name="UploadImagePlugin"
+        value="com.asiainfo.appframe.webutil.plugins.UploadImagePlugin"></plugin>
+    
+    <plugin 
+        name="GetLocationPlugin"
+        value="com.asiainfo.appframe.webutil.plugins.GetLocationPlugin"></plugin>
+    
+    <plugin 
+        name="UserPlugin"
+        value="com.asiainfo.appframe.webutil.plugins.UserPlugin"></plugin>
+    
+    <plugin 
+        name="GetDevicePlugin"
+        value="com.asiainfo.appframe.webutil.plugins.GetDevicePlugin"></plugin>
+    
+    <plugin 
+        name="Scancode"
+        value="com.asiainfo.appframe.webutil.plugins.Scancode"></plugin>
+    <plugin
+        name="AudioPlugin"
+        value="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"></plugin>
+    
+    <plugin
+        name="MultipleWindowPlugin"
+        value="com.asiainfo.appframe.webutil.plugins.MultipleWindowPlugin"></plugin>
+    
+    <plugin
+        name="FilePlugin"
+        value="com.asiainfo.appframe.webutil.plugins.FilePlugin"></plugin>
+    
+    <plugin
+        name="AbilityBridge"
+        value="com.asiainfo.appframe.webutil.plugins.AbilityPlugin"></plugin>
+    
+    <plugin
+        name="PublicAbilityBridge"
+        value="com.asiainfo.appframe.webutil.plugins.common.PublicAbilityPlugin"></plugin>
+    
+</plugins>

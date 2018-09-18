@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_entry1_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/black"
+        android:text="便捷服务入口"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/colorLineGray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_entry1_1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_entey1_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/ic_entry1"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_entry1_menu_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订购战报"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_entry1_menu_describe1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详细订购数据"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:textColor="#666666"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_entry1_menu_name1"/>
+
+        </RelativeLayout>
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/colorLineGray"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_entry1_2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_entey1_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/ic_entry1"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_entry1_menu_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订购战报"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_entry1_menu_describe2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详细订购数据"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:textColor="#666666"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_entry1_menu_name2"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

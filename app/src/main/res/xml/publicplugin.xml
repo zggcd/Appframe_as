@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugins>
+    <plugin 
+        JS_API="uploadImage"
+        category="com.asiainfo.appframe.webutil.plugins.UploadImagePlugin"
+        method="Upload"
+        alias="takePhoto"></plugin>
+    
+    <plugin 
+        JS_API="getImageBase64"
+        category="com.asiainfo.appframe.webutil.plugins.UploadImagePlugin"
+        method="GetBase64EncodeImage"
+        alias="getPicBase64"></plugin>
+    
+    <plugin 
+        JS_API="deviceInfo"
+        category="com.asiainfo.appframe.webutil.plugins.GetDevicePlugin"
+        method="GetDeviceInfo"
+        alias="getDeviceInfo"></plugin>
+    
+    <plugin 
+        JS_API="systemInfo"
+        category="com.asiainfo.appframe.webutil.plugins.GetDevicePlugin"
+        method="GetSystemInfo"
+        alias="getSystemInfo"></plugin>
+    
+    <plugin 
+        JS_API="networkInfo"
+        category="com.asiainfo.appframe.webutil.plugins.GetDevicePlugin"
+        method="GetNetworkInfo"
+        alias="getNetworkInfo"></plugin>
+    
+    <plugin 
+        JS_API="getGpsInfo"
+        category="com.asiainfo.appframe.webutil.plugins.GetLocationPlugin"
+        method="GetLocation"
+        alias="getLocation"></plugin>
+    
+    <plugin 
+        JS_API="scanQRcode"
+        category="com.asiainfo.appframe.webutil.plugins.Scancode"
+        method="Scanning"
+        alias="getQRcodeInfo"></plugin>
+    
+    <plugin 
+        JS_API="startRecord"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="StartRecord"
+        alias="recordStart"></plugin>
+    
+    <plugin 
+        JS_API="stopRecord"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="StopRecord"
+        alias="recordStop"></plugin>
+    
+    <plugin 
+        JS_API="startAudio"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="StartAudio"
+        alias="audioStart"></plugin>
+    
+    <plugin 
+        JS_API="pauseAudio"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="PauseAudio"
+        alias="audioPause"></plugin>
+    
+    <plugin 
+        JS_API="continueAudio"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="ContinueAudio"
+        alias="audioContinue"></plugin>
+    
+    <plugin 
+        JS_API="stopAudio"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="StopAudio"
+        alias="audioStop"></plugin>
+    
+    <plugin 
+        JS_API="uploadAudio"
+        category="com.asiainfo.appframe.webutil.plugins.MediaRecordPlugin"
+        method="UploadAudio"
+        alias="audioUpload"></plugin>
+    
+    <plugin 
+        JS_API="trailStart"
+        category="com.asiainfo.appframe.webutil.plugins.GetLocationPlugin"
+        method="trailStart"
+        alias="startTrail"></plugin>
+    
+    <plugin 
+        JS_API="getTrail"
+        category="com.asiainfo.appframe.webutil.plugins.GetLocationPlugin"
+        method="getTrail"
+        alias="getTrailInfo"></plugin>
+    
+    <plugin 
+        JS_API="locationChoose"
+        category="com.asiainfo.appframe.webutil.plugins.GetLocationPlugin"
+        method="locationChoose"
+        alias="locationChoose"></plugin>
+    
+    <plugin 
+        JS_API="newWindow"
+        category="com.asiainfo.appframe.webutil.plugins.MultipleWindowPlugin"
+        method="newWindow"
+        alias="openNewWindow"></plugin>
+    
+    <plugin 
+        JS_API="setWindowSession"
+        category="com.asiainfo.appframe.webutil.plugins.MultipleWindowPlugin"
+        method="setWindowSession"
+        alias="saveWindowContent"></plugin>
+    
+    <plugin 
+        JS_API="getWindowSession"
+        category="com.asiainfo.appframe.webutil.plugins.MultipleWindowPlugin"
+        method="getWindowSession"
+        alias="getWindowContent"></plugin>
+    
+    <plugin 
+        JS_API="fileDownload"
+        category="com.asiainfo.appframe.webutil.plugins.FilePlugin"
+        method="downloadFile"
+        alias="downloadFile"></plugin>
+    
+</plugins>
