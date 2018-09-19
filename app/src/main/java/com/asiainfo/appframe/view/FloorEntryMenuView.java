@@ -89,7 +89,9 @@ public class FloorEntryMenuView extends LinearLayout {
                 LinearLayout ll_menu_00 = (LinearLayout) view.findViewById(R.id.ll_menu_00);
                 if( i * 8 < mList_FloorBasicInfos.size() ){
                     final ImageView iv_00 = (ImageView) ll_menu_00.getChildAt(0);
-                    Picasso.with(context).load(mList_FloorBasicInfos.get(i * 8).getPicurl()).into(iv_00, new Callback() {
+//                    String imageUrl = mList_FloorBasicInfos.get(i * 8).getPicurl();
+                    String imageUrl = mList_FloorBasicInfos.get(i * 8).getPicurl();
+                    Picasso.with(context).load(imageUrl).into(iv_00, new Callback() {
                         @Override
                         public void onSuccess() {
                             iv_00.setBackground(null);
