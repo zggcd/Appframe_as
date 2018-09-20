@@ -2,10 +2,11 @@
 <!-- 自定义进度条 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loading_process_layout"
-    android:layout_width="fill_parent"
+    android:layout_width="90dp"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:gravity="center_horizontal" >
+	android:background="@null"
+    android:layout_gravity="center"
+	android:gravity="center_horizontal" >
 
     <RelativeLayout
         android:id="@+id/process_layout"

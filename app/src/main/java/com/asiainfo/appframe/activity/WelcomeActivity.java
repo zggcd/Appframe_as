@@ -87,7 +87,7 @@ public class WelcomeActivity extends BaseActivity {
 						}
 					}.start();
 				}else{
-					Toast.makeText(mContext, info.getMsg(), 2000).show();
+//					Toast.makeText(mContext, info.getMsg(), 2000).show();
 				}
 				break;
 			case 2:			//获取teamKey
@@ -104,7 +104,7 @@ public class WelcomeActivity extends BaseActivity {
 						e.printStackTrace();
 					}
 				}else{
-					Toast.makeText(mContext, (String)result.opt("msg"), 2000).show();
+//					Toast.makeText(mContext, (String)result.opt("msg"), 2000).show();
 				}
 				break;
 			case 3:
@@ -173,7 +173,7 @@ public class WelcomeActivity extends BaseActivity {
 		int timestamp = (int)System.currentTimeMillis();
 		
 		String signature = MD5Util.md5(app_code + area_code + timestamp + staff_id + auth_secret);
-		ApiClient.getMsgPushAuthRequest("", handler, 3, "1.0", staff_id, app_code, area_code, timestamp, ip, signature);
+//		ApiClient.getMsgPushAuthRequest("", handler, 3, "1.0", staff_id, app_code, area_code, timestamp, ip, signature);
 		
 	}
 	

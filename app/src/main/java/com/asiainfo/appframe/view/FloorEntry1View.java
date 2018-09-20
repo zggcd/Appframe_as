@@ -1,5 +1,6 @@
 package com.asiainfo.appframe.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.asiainfo.appframe.R;
 import com.asiainfo.appframe.bean.FloorBasicInfosBean;
+import com.asiainfo.appframe.bean.HomePageDtoListBean;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -31,14 +33,17 @@ public class FloorEntry1View extends LinearLayout {
     //DATA
     List<FloorBasicInfosBean> mList_FloorBasicInfos = new ArrayList<>();
 
+    HomePageDtoListBean mParentInfo;
+
     public FloorEntry1View(Context context) {
         super(context);
         this.context = context;
         initView();
     }
 
-    public void setFloorEntry1ViewInfo(List<FloorBasicInfosBean> list){
-        this.mList_FloorBasicInfos = list;
+    public void setFloorEntry1ViewInfo(HomePageDtoListBean info){
+        this.mParentInfo = info;
+        this.mList_FloorBasicInfos = info.getFloorBasicInfos();
         Collections.sort(mList_FloorBasicInfos, new Comparator<FloorBasicInfosBean>() {
 
             @Override
@@ -66,15 +71,58 @@ public class FloorEntry1View extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.appframe_floor_entry1, this, true);
     }
 
+    @SuppressLint("SetTextI18n")
     private void initData(){
-//        viewPager = findViewById(R.id.viewPager);
-//        viewPager.setVisibility(View.GONE);
-//
-//        if(mList_FloorBasicInfos.size() > 0){
-//            View view = View.inflate(context, R.layout.appframe_floor_entry1, null);
-//            addView(view);
-//        }
-//        invalidate();
+
+        if(mList_FloorBasicInfos.size() > 0){
+
+            TextView tv_entry1_name = (TextView) findViewById(R.id.tv_entry1_name);
+
+            TextView tv_entry1_menu_name1 = (TextView) findViewById(R.id.tv_entry1_menu_name1);
+            TextView tv_entry1_menu_describe1 = (TextView) findViewById(R.id.tv_entry1_menu_describe1);
+            final ImageView iv_entey1_1 = (ImageView) findViewById(R.id.iv_entey1_1);
+
+            TextView tv_entry1_menu_name2 = (TextView) findViewById(R.id.tv_entry1_menu_name2);
+            TextView tv_entry1_menu_describe2 = (TextView) findViewById(R.id.tv_entry1_menu_describe2);
+            final ImageView iv_entey1_2 = (ImageView) findViewById(R.id.iv_entey1_2);
+
+            String entry1_menu_name = mList_FloorBasicInfos.get(0).getTitle();
+            String entry1_menu_describe1 = mList_FloorBasicInfos.get(0).getSubhead();
+            tv_entry1_name.setText(mParentInfo.getTitle());
+            tv_entry1_menu_name1.setText(entry1_menu_name);
+            tv_entry1_menu_describe1.setText(entry1_menu_describe1);
+            String iconUrl1 = mList_FloorBasicInfos.get(0).getPicurl();
+            Picasso.with(context).load(iconUrl1).into(iv_entey1_1, new Callback() {
+                @Override
+                public void onSuccess() {
+                    iv_entey1_1.setBackground(null);
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+
+            String entry1_menu_name2 = mList_FloorBasicInfos.get(1).getTitle();
+            String entry1_menu_describe2 = mList_FloorBasicInfos.get(1).getSubhead();
+            tv_entry1_menu_name2.setText(entry1_menu_name2);
+            tv_entry1_menu_describe2.setText(entry1_menu_describe2);
+            String iconUrl2 = mList_FloorBasicInfos.get(1).getPicurl();
+            Picasso.with(context).load(iconUrl2).into(iv_entey1_2, new Callback() {
+                @Override
+                public void onSuccess() {
+                    iv_entey1_2.setBackground(null);
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+
+        }
+        invalidate();
 
     }
 

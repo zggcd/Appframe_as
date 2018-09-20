@@ -73,7 +73,6 @@ public class FloorEntryMenuView extends LinearLayout {
     private void initData(){
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-
         if(mList_FloorBasicInfos.size() > 0){
             List<View> list_view = new ArrayList<>();
             int pageSize = mList_FloorBasicInfos.size() / 8;            //viewpager总页数
@@ -137,7 +136,8 @@ public class FloorEntryMenuView extends LinearLayout {
                 LinearLayout ll_menu_02 = (LinearLayout) view.findViewById(R.id.ll_menu_02);
                 if( i * 8 + 2 < mList_FloorBasicInfos.size() ){
                     final ImageView iv_00 = (ImageView) ll_menu_02.getChildAt(0);
-                    Picasso.with(context).load(mList_FloorBasicInfos.get(i * 8 + 2).getPicurl()).into(iv_00, new Callback() {
+                    String imgUrl = mList_FloorBasicInfos.get(i * 8 + 2).getPicurl();
+                    Picasso.with(context).load(imgUrl).into(iv_00, new Callback() {
                         @Override
                         public void onSuccess() {
                             iv_00.setBackground(null);
@@ -200,8 +200,9 @@ public class FloorEntryMenuView extends LinearLayout {
                 LinearLayout ll_menu_11 = (LinearLayout) view.findViewById(R.id.ll_menu_11);
                 if( i * 8 + 5 < mList_FloorBasicInfos.size() ){
                     final ImageView iv_00 = (ImageView) ll_menu_11.getChildAt(0);
+                    String imgUrl = mList_FloorBasicInfos.get(i * 8 + 5).getPicurl();
 //                    picasso.load(R.mipmap.task).into(iv_00);
-                    Picasso.with(context).load(mList_FloorBasicInfos.get(i * 8 + 5).getPicurl()).into(iv_00, new Callback() {
+                    Picasso.with(context).load(imgUrl).into(iv_00, new Callback() {
                         @Override
                         public void onSuccess() {
                             iv_00.setBackground(null);
@@ -222,7 +223,8 @@ public class FloorEntryMenuView extends LinearLayout {
                 LinearLayout ll_menu_12 = (LinearLayout) view.findViewById(R.id.ll_menu_12);
                 if( i * 8 + 6 < mList_FloorBasicInfos.size() ){
                     final ImageView iv_00 = (ImageView) ll_menu_12.getChildAt(0);
-                    Picasso.with(context).load(mList_FloorBasicInfos.get(i * 8 + 6).getPicurl()).into(iv_00, new Callback() {
+                    String imgUrl = mList_FloorBasicInfos.get(i * 8 + 6).getPicurl();
+                    Picasso.with(context).load(imgUrl).into(iv_00, new Callback() {
                         @Override
                         public void onSuccess() {
                             iv_00.setBackground(null);
@@ -243,7 +245,8 @@ public class FloorEntryMenuView extends LinearLayout {
                 LinearLayout ll_menu_13 = (LinearLayout) view.findViewById(R.id.ll_menu_13);
                 if( i * 8 + 7 < mList_FloorBasicInfos.size() ){
                     final ImageView iv_00 = (ImageView) ll_menu_13.getChildAt(0);
-                    Picasso.with(context).load(mList_FloorBasicInfos.get(i * 7).getPicurl()).into(iv_00, new Callback() {
+                    String imgUrl = mList_FloorBasicInfos.get(i * 8 + 7).getPicurl();
+                    Picasso.with(context).load(imgUrl).into(iv_00, new Callback() {
                         @Override
                         public void onSuccess() {
                             iv_00.setBackground(null);
@@ -255,7 +258,7 @@ public class FloorEntryMenuView extends LinearLayout {
                         }
                     });
                     TextView tv_00 = (TextView) ll_menu_13.getChildAt(1);
-                    tv_00.setText(mList_FloorBasicInfos.get(i * 7).getTitle());
+                    tv_00.setText(mList_FloorBasicInfos.get(i * 8 + 7).getTitle());
                 }else{
                     ll_menu_13.setVisibility(View.INVISIBLE);
                 }

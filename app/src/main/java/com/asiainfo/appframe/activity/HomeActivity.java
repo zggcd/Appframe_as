@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.asiainfo.appframe.R;
 import com.asiainfo.appframe.bean.Footbars;
+import com.asiainfo.appframe.bean.FootbarsBean;
 import com.asiainfo.appframe.bean.HomePageDtoList;
 import com.asiainfo.appframe.bean.HomePageDtoListBean;
 import com.asiainfo.appframe.bean.HomePageInfo;
@@ -33,6 +34,7 @@ import com.asiainfo.appframe.utils.WindowSizeUtil;
 import com.asiainfo.appframe.view.Floor001View;
 import com.asiainfo.appframe.view.FloorEntry1View;
 import com.asiainfo.appframe.view.FloorEntryMenuView;
+import com.asiainfo.appframe.view.FootBarView;
 import com.asiainfo.appframe.view.PostFrameView_type1;
 import com.asiainfo.appframe.view.PostFrameView_type2;
 import com.asiainfo.appframe.view.PostFrameView_type3;
@@ -64,6 +66,8 @@ public class HomeActivity extends AppCompatActivity {
     LinearLayout llContent;
     @BindView(R.id.main_content)
     CoordinatorLayout mainContent;
+    @BindView(R.id.ll_bottom_view)
+    LinearLayout ll_bottom_view;	//底部导航栏
 
 
     LinearLayout ll_content;
@@ -147,6 +151,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        List<FootbarsBean> list_bar = homepageInfo2.getUiDto().getFootbars();
+        if(list_bar != null && list_bar.size() > 0){
+            FootBarView view_type_bottom = new FootBarView(mContext);
+            view_type_bottom.setFloorBasicInfos(list_bar);
+            ll_bottom_view.addView(view_type_bottom);
+        }
+
         for (HomePageDtoListBean homePageDtoListBean:
                 list_floorBasicInfos) {
             switch (homePageDtoListBean.getCssCode()){
@@ -164,7 +175,7 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case "FLOOR-ENTRY-1"://入口
                     FloorEntry1View floorEntry1View = new FloorEntry1View(mContext);
-                    floorEntry1View.setFloorEntry1ViewInfo(homePageDtoListBean.getFloorBasicInfos());
+                    floorEntry1View.setFloorEntry1ViewInfo(homePageDtoListBean);
                     LinearLayout.LayoutParams pl = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     floorEntry1View.setBackgroundColor(Color.parseColor("#fff000"));
                     floorEntry1View.setLayoutParams(pl);

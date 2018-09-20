@@ -183,6 +183,10 @@ public class CommonUtil {
 		
 		commonProgressDialog = ProgressDialog.show(context, "", msg, true, true);
 		commonProgressDialog.setContentView(R.layout.appframe_loading_process_dialog_withmsg);
+		commonProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		WindowManager.LayoutParams params = commonProgressDialog.getWindow().getAttributes();//一定要用mProgressDialog得到当前界面的参数对象
+		params.width = 60;
+		commonProgressDialog.getWindow().setAttributes(params);
 		TextView tvMsg = (TextView)commonProgressDialog.findViewById(R.id.tv_msg);
 		tvMsg.setText(msg);
 		commonProgressDialog.setCanceledOnTouchOutside(false);

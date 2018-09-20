@@ -151,7 +151,7 @@ public class Floor001View extends RelativeLayout {
             return;
         }
 
-        // 一步任务获取图片
+        // 异步任务获取图片
         new GetListTask().execute("");
     }
     /**
@@ -371,7 +371,6 @@ public class Floor001View extends RelativeLayout {
         @Override
         protected Boolean doInBackground(String... params) {
             try {
-                // 这里一般调用服务端接口获取一组轮播图片，下面是从百度找的几个图片
 
                 for (FloorBasicInfosBean info : mList_floorBasicInfos) {
                     imageUrls.add(info.getPicurl().trim());
