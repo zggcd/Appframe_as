@@ -27,26 +27,29 @@ import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 public class SDKUtil {
-	
+
 	private Context context;
-	
+
 	//SDK url
 	public static String PortUrl;						//baseurl
 	public static String InvokeUrl;					//小程序URL
 	public static String ValidateCodeUrl;				//获取验证码
+	public static String ResetPwdAuthUrl;				//获取重置密码验证码
+	public static String ModifyPwdAuthUrl;				//修改面膜url
+	public static String ResetPwdUrl;				//重置密码
 	public static String AreaCodeUrl;					//获取地区码
 	public static String AccessTokenUrl;				//获取accesstoken，登录
 	public static String refreshAccessTokenUrl;		//刷新accesstoken
 	public static String UAccessTokenUrl;				//获取Uname相关的accesstoken
-	
+
 	public static String UploadImageUrl;				//图片上传接口
-	
+
 	public static String jumpToWebUrl;					//跳转web页
-	
+
 	//nomal url
 	private static String UpdateDeviceInfoUrl;
 	public static String RecordH5Invoke;
-	
+
 	public static String accessToken = "";
 	public static String refreshToken = "";
 	public static String phone_num = "";
@@ -61,30 +64,33 @@ public class SDKUtil {
 	public static String staff_code = "";
 	public static String user_name = "";
 	public static String area_code = "";
-	
+
 	public static String uuid;//app唯一识别号
-	
+
 	private static AddPermission addPermission;
-	
+
 	SharedPreferences mSP;
 	private AuthHandler authHandler = null;
+	//登录信息回调
 	private SDKAuthCallBack callback;
-	
+	private SDKResetPwdCallback resetPwdCallback = null;
+	private SDKModifyPwdCallback modifyPwdCallback = null;
+
 	private static SDKUtil sdkUtil = null;
-	
+
 	public static SDKUtil getInstance(Context context, SDKAuthCallBack callback){
 		if(sdkUtil == null){
 			sdkUtil = new SDKUtil(context, callback);
 		}
 		return sdkUtil;
 	}
-	
+
 	private SDKUtil(Context context, SDKAuthCallBack callback){
-		
+
 		if(context == null){
 			return;
 		}
-		
+
 		this.context = context;
 		this.callback = callback;
 		this.app_id = context.getResources().getString(ResourceUtil.getStringId(context, "APP_ID"));
@@ -93,9 +99,9 @@ public class SDKUtil {
 		this.mac = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
 		addPermission = new AddPermission((Activity)context);
 		addPermission.addPermission(permissionsListener, AddPermission.CODE_PERMISSIONS_STORAGE);
-		
+
 	}
-	
+
 	public AddPermission.PermissionsListener permissionsListener = new AddPermission.PermissionsListener() {
 		@Override
 		public void onPermissionListener(boolean hasPermission, int code) {
@@ -105,7 +111,25 @@ public class SDKUtil {
 			}
 		}
 	};
-	
+
+	/**
+	 * 设置重置密码回调
+	 * @param callback
+	 */
+	public void setSDKResetPwdCallback(SDKResetPwdCallback callback){
+		this.resetPwdCallback = callback;
+	}
+
+	/**
+	 * 设置修改密码回调
+	 * @param modifyPwdCallback
+	 */
+	public void setSDKModifyPwdCallback(SDKModifyPwdCallback modifyPwdCallback){
+		this.modifyPwdCallback = modifyPwdCallback;
+	}
+
+
+
 	/**
 	 * 重置，解决串联分页面不方便调用的问题
 	 * @param callback
@@ -116,12 +140,12 @@ public class SDKUtil {
 			this.context = context;
 		}
 	}
-	
+
 	/**
 	 * 初始化配置信息
 	 */
 	private void init(){
-		
+
 		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     	String androidId = "" + Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
     	String tmDevice = "" + tm.getDeviceId();
@@ -135,6 +159,9 @@ public class SDKUtil {
 		InvokeUrl = PortUrl + "/gateway/special/invoke?";
 		
 		ValidateCodeUrl = PortUrl + "/gateway/auth/getAuthCode";
+		ResetPwdAuthUrl = PortUrl + "/gateway/auth/getAuthCode";//和登录获取验证码接口一样
+		ModifyPwdAuthUrl = PortUrl + "/gateway/auth/modifyPwd";//修改密碼
+		ResetPwdUrl = PortUrl + "/gateway/auth/resetPwd";//重置密碼接口
 		AreaCodeUrl = PortUrl + "/gateway/auth/getAreaCode";
 		AccessTokenUrl = PortUrl + "/gateway/auth/getAccessToken";
 		UAccessTokenUrl = PortUrl + "/gateway/auth/getUAccessToken";
@@ -201,7 +228,6 @@ public class SDKUtil {
 	
 	/**
 	 * SDK跳转web页,指定url后拼参数
-	 * @param storeName 别名
 	 */
 	public void invokeMiniProgram(){
 		if(!StringUtil.isEmpty(accessToken) ){
@@ -230,10 +256,6 @@ public class SDKUtil {
 	
 	/**
 	 * 获取accessToken，登录
-	 * @param phone_num 手机号
-	 * @param pwd 验证码
-	 * @param areaCode 地区码
-	 * @param staff_id staff_id
 	 */
 	public void getAccessToken(String account, String smscode, String password, String areaCode){
 		
@@ -258,7 +280,7 @@ public class SDKUtil {
 	
 	/**
 	 * 获取Uname相关联的accesstoken
-	 * @param phone_num	手机号
+	 * @param account	手机号
 	 * @param staff_code 工号
 	 * @param user_name	名称
 	 * @param area_code	地区码
@@ -273,6 +295,44 @@ public class SDKUtil {
 		}else{
 			Toast.makeText(context, "传入参数有误", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	/**
+	 * 获取重置密码验证码
+	 * @param account
+	 */
+	public void getResetPwdAuthcode(String account){
+		if (resetPwdCallback == null){
+			return;
+		}
+		ApiClient.getValidateCode(ResetPwdAuthUrl, authHandler, 11, account.trim(), app_id);
+	}
+
+	/**
+	 * 重置密码
+	 * @param username	账号
+	 * @param smscode   手机号
+	 * @param nPassword 新密码
+	 */
+	public void resetPwd(String username,String smscode, String nPassword){
+		if (resetPwdCallback == null){
+			return;
+		}
+		ApiClient.resetPwd(ResetPwdUrl, authHandler, 12, username, smscode, nPassword);
+	}
+
+	/**
+	 * 修改密码
+	 * @param accessToken	账号
+	 * @param password   手机号
+	 * @param nPassword 新密码
+	 * @param First 根据getAccesstoken获取的staff_state,0填0，其他填1
+	 */
+	public void modifyPwd(String accessToken,String password, String nPassword, int First){
+		if (modifyPwdCallback == null){
+			return;
+		}
+		ApiClient.modifyPwd(ResetPwdUrl, authHandler, 13, accessToken, password, nPassword, First);
 	}
 	
 	private class AuthHandler extends Handler{
@@ -417,6 +477,30 @@ public class SDKUtil {
 					callback.onAccessTokenCallback(jo.toString());
 				}else{
 					callback.onAccessTokenCallback((String)msg.obj);
+				}
+				break;
+
+			case 11:
+				//获取验证码
+				String resetPwdAuthCode = (String) msg.obj;
+				if(resetPwdAuthCode != null){
+					resetPwdCallback.onAuthCodeSuccess(resetPwdAuthCode);
+				}else{
+					resetPwdCallback.onAuthCodeSuccess(resetPwdAuthCode);
+				}
+				break;
+
+			case 12://重置密碼
+				String resultResetPwd = (String) msg.obj;
+				if (resultResetPwd != null){
+					resetPwdCallback.onResetPwdSuccess(resultResetPwd);
+				}
+				break;
+
+			case 13://修改密码
+				String resultModify = (String) msg.obj;
+				if (resultModify != null){
+					modifyPwdCallback.onModifyPwdCallback(resultModify);
 				}
 				break;
 			case 0:

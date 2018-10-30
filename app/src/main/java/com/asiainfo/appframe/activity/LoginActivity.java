@@ -298,6 +298,7 @@ public class LoginActivity extends BaseActivity implements SDKAuthCallBack{
 			
 		}
 		
+		@SuppressLint("WrongConstant")
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
@@ -325,7 +326,7 @@ public class LoginActivity extends BaseActivity implements SDKAuthCallBack{
 //					jumpTo(MainActivity.class, null);
 					jumpTo(HomeActivity.class, null);
 				}else{
-					Toast.makeText(mContext, response.getMsg(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, response.getMsg(), 10000).show();
 				}
 				
 				break;

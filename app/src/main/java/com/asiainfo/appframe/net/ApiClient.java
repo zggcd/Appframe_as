@@ -13,8 +13,10 @@ import com.asiainfo.appframe.net.logic.GetUAccessTokenRequest;
 import com.asiainfo.appframe.net.logic.GetUiInfo;
 import com.asiainfo.appframe.net.logic.GetValidateCodeRequest;
 import com.asiainfo.appframe.net.logic.JumpToWebWindowRequest;
+import com.asiainfo.appframe.net.logic.ModifyPwdRequest;
 import com.asiainfo.appframe.net.logic.RecordH5InvokeRequest;
 import com.asiainfo.appframe.net.logic.RefreshAccessTokenRequest;
+import com.asiainfo.appframe.net.logic.ResetPwdRequest;
 import com.asiainfo.appframe.net.logic.UploadDeviceInfoRequest;
 import com.asiainfo.appframe.net.logic.msgpush.MsgPushAuthRequest;
 import com.asiainfo.appframe.utils.HttpUtil;
@@ -202,6 +204,43 @@ public class ApiClient {
 	 * @param phone_num
 	 */
 	public static void getValidateCode(String url, Handler handler, int what, String phone_num, String app_id){
+		GetValidateCodeRequest resquest = new GetValidateCodeRequest(url, handler, what, phone_num, app_id);
+		resquest.start();
+	}
+
+	/**
+	 * 重置密码
+	 * @param handler
+	 * @param what
+	 * @param nPassword
+	 */
+	public static void resetPwd(String url, Handler handler, int what, String username, String smscode, String nPassword){
+		ResetPwdRequest resquest = new ResetPwdRequest(url, handler, what, username, smscode, nPassword);
+		resquest.start();
+	}
+
+	/**
+	 * 修改密码
+	 * @param url
+	 * @param handler
+	 * @param what
+	 * @param accesstoken
+	 * @param password
+	 * @param nPassword
+	 * @param First
+	 */
+	public static void modifyPwd(String url, Handler handler, int what, String accesstoken, String password, String nPassword, int First){
+		ModifyPwdRequest resqest = new ModifyPwdRequest(url, handler, what, accesstoken, password, nPassword, First);
+		resqest.start();
+	}
+
+	/**
+	 * 获取验证码		指定url
+	 * @param handler
+	 * @param what
+	 * @param phone_num
+	 */
+	public static void getResetPwdAuthCode(String url, Handler handler, int what, String phone_num, String app_id){
 		GetValidateCodeRequest resquest = new GetValidateCodeRequest(url, handler, what, phone_num, app_id);
 		resquest.start();
 	}

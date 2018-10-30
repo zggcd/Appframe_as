@@ -52,13 +52,17 @@ public class BottomAnimDialog extends Dialog {
         
         Window window = this.getWindow();  
         if (window != null) { //设置dialog的布局样式 让其位于底部   
-            window.setGravity(Gravity.BOTTOM);  
+            window.setGravity(Gravity.BOTTOM);
+
+
             WindowManager.LayoutParams lp = window.getAttributes();
+            int width = lp.width;
+            lp.width = (int)CommonUtil.getWindowDensity(mContext)[1];
             lp.y = CommonUtil.dip2px(mContext,10); //设置居于底部的距离 
             window.setAttributes(lp);
         } 
         
-        mTV_cancel = (TextView) view.findViewById(R.id.tv_cancel);
+        mTV_cancel = view.findViewById(R.id.tv_cancel);
         mTV_cancel.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

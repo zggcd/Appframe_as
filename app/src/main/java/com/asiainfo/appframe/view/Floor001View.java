@@ -20,7 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.asiainfo.appframe.R;
+import com.asiainfo.appframe.activity.HomeActivity;
+import com.asiainfo.appframe.activity.MainActivity;
+import com.asiainfo.appframe.activity.WebControlerActivity;
+import com.asiainfo.appframe.activity.WelcomeActivity;
+import com.asiainfo.appframe.bean.AccessTokenResponse;
 import com.asiainfo.appframe.bean.FloorBasicInfosBean;
+import com.asiainfo.appframe.net.ApiClient;
+import com.asiainfo.appframe.utils.SDKUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -72,6 +79,19 @@ public class Floor001View extends RelativeLayout {
                     viewPager.setCurrentItem(currentItem);
                     break;
                 case 2:
+                    AccessTokenResponse response = (AccessTokenResponse)msg.obj;
+
+                    if(response.getCode() == 1000){
+                        Intent intent = new Intent(context, WelcomeActivity.class);
+                        context.startActivity(intent);
+                        ((HomeActivity)context).finish();
+                        break;
+                    }
+
+                    SDKUtil.accessToken = response.getAccess_token();
+                    SDKUtil.expires_in = response.getExpires_in();
+                    SDKUtil.start_time = System.currentTimeMillis();
+                    ApiClient.getClickUrl(handler, 4, mList_floorBasicInfos.get(msg.arg1).getAbilityalias());
                     break;
                 case 3:
                     //取数
@@ -185,6 +205,13 @@ public class Floor001View extends RelativeLayout {
 
                 @Override
                 public void onClick(View v) {
+                    if((System.currentTimeMillis() - SDKUtil.start_time) / 1000 - Long.parseLong(SDKUtil.expires_in) >= 0){
+                        ApiClient.refreshAccessToken(handler, 2, j, SDKUtil.phone_num, SDKUtil.mac, SDKUtil.accessToken, SDKUtil.staff_code);
+                        return;
+                    }
+                    // TODO Auto-generated method stub
+                    String abilityalias = mList_floorBasicInfos.get(j).getAbilityalias();
+                    ApiClient.getClickUrl(handler, 4, abilityalias);
                 }
             });
 
@@ -201,12 +228,11 @@ public class Floor001View extends RelativeLayout {
     }
 
     private void jumpToWeb(String webUrl){
-//    	Intent intent = new Intent(context, WebViewActivity.class);
-//        Intent intent = new Intent(context, WebControlerActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("webUrl", webUrl);
-//        intent.putExtras(bundle);
-//        context.startActivity(intent);
+        Intent intent = new Intent(context, WebControlerActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("webUrl", webUrl);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
     }
 
     /**

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lc"
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        android:layout_height="300dp" />-->
+
+    <ImageView
+        android:id="@+id/iv_bg_dxicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/appframe_bg_dxicon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        />
+
+    <ImageView
+        android:id="@+id/iv_dxicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg_dxicon"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_dxicon"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_bg_dxicon"
+        app:layout_constraintRight_toRightOf="@+id/iv_bg_dxicon"
+        android:src="@mipmap/appframe_dxicon"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:text="江苏电信应用集成框架"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bg_dxicon" />
+
+    <!-- 用户名输入框 -->
+    <LinearLayout
+        android:id="@+id/ll_login_account"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appframe_login_edittext_bg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ll_login_pwd">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/appframe_ic_account"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/ed_login_account"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"
+            android:hint="请输入用户名"
+            android:lines="1"/>
+
+    </LinearLayout>
+
+    <!-- 密码输入框 -->
+    <LinearLayout
+        android:id="@+id/ll_login_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appframe_login_edittext_bg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/appframe_ic_pwd"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/ed_login_pwd"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:lines="1"/>
+
+        <TextView
+            android:id="@+id/tv_login_forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记密码"
+            android:textColor="#2D8FFD"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+             />
+
+    </LinearLayout>
+
+    <!-- 短信验证码输入框 -->
+    <LinearLayout
+        android:id="@+id/ll_login_authcode"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appframe_login_edittext_bg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ll_login_pwd">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/appframe_ic_authcode"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/ed_login_authcode"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:lines="1"/>
+
+        <Button
+            android:id="@+id/btn_login_get_authcode"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:text="获取验证码"
+            android:textSize="12sp"
+            android:textColor="#2D8FFD"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/appframe_login_btn_authcode"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="60dp"
+        android:background="@drawable/appframe_selector_bg_login"
+        android:layout_marginTop="30dp"
+        android:text="登 录"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_login_authcode"
+        />
+
+    <!--style="?android:attr/borderlessButtonStyle"-->
+
+    <LinearLayout
+        android:id="@+id/ll_autologin"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
+
+        <CheckBox
+            android:id="@+id/cb_autologin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:button="@drawable/appframe_selector_cb_autologin"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_autologin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="下次自动登录"
+            android:textSize="12sp"
+            android:textColor="#C0DDFE"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_reset_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我要重置密码  "
+        android:textSize="16sp"
+        android:drawableRight="@mipmap/appframe_ic_direct"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/appframe_login_btn_authcode"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        style="?android:attr/selectableItemBackgroundBorderless"/>
+
+</android.support.constraint.ConstraintLayout>

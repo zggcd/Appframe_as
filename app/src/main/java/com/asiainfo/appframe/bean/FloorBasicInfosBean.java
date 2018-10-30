@@ -22,6 +22,15 @@ public class FloorBasicInfosBean {
     private int sort;
     private String subhead;
     private String title;
+    private String abilityalias;
+
+    public String getAbilityalias() {
+        return abilityalias;
+    }
+
+    public void setAbilityalias(String abilityalias) {
+        this.abilityalias = abilityalias;
+    }
 
     public CreatetimeBean getCreatetime() {
         return createtime;

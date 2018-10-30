@@ -1,10 +1,18 @@
 package com.asiainfo.appframe.data;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Constants {
 
 	private static Constants constants = null;
+
+	public List<Activity> activityList = new ArrayList<Activity>();
+	// 记录活动的activity name
+	public List<String> activityNameList = new ArrayList<String>();
 
 	// 应用资源保存根目录
 	@SuppressLint("SdCardPath")

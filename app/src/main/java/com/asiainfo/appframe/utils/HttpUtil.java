@@ -89,7 +89,7 @@ public class HttpUtil {
         StringEntity stringEntity = null;
         if (json != null && json.length() > 0) {
             try {
-                stringEntity = new StringEntity(json);
+                stringEntity = new StringEntity(json, "utf-8");
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }

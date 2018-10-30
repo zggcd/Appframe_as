@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ailk.ec.unitdesk.ui3.view.TabControlView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_vertical"
+    android:background="#FAFAFA"
+    android:orientation="horizontal">
+
+    <com.ailk.ec.unitdesk.ui3.view.ButtomTabView
+        android:id="@+id/btn_common"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+
+    <com.ailk.ec.unitdesk.ui3.view.ButtomTabView
+        android:id="@+id/btn_discover"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+
+    <com.ailk.ec.unitdesk.ui3.view.ButtomTabView
+        android:id="@+id/btn_classify"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+
+    <com.ailk.ec.unitdesk.ui3.view.ButtomTabView
+        android:id="@+id/btn_mine"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+
+</com.ailk.ec.unitdesk.ui3.view.TabControlView>

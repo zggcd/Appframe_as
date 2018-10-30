@@ -77,6 +77,7 @@ public abstract class ClientRequest implements RequestResultCallback {
     protected void addHeader() {
     	
     	AsyncHttpClient client = HttpUtil.getClient();
+        client.removeAllHeaders();
     	client.addHeader("AF-SDKVersion", "Android_V1.2");//SDK版本
     	SDKUtil sdkUtil = SDKUtil.getInstance(null, null);
     	if(sdkUtil != null){
@@ -84,7 +85,7 @@ public abstract class ClientRequest implements RequestResultCallback {
     		Seq = "01_" + md5.substring(8, 15) + "_" + System.currentTimeMillis() + "_" + StringUtil.getRandomString(4);
     		client.addHeader("AF-RequestSeq", Seq);
     	}
-    	client.removeHeader("AF-Version");//网关接口版本，部分接口需要传
+
     }
 	
     /**

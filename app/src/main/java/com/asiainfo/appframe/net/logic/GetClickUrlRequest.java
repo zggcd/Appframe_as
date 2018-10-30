@@ -40,25 +40,23 @@ public class GetClickUrlRequest  extends ClientRequest {
 		JWSObject jwsObject = new JWSObject(header, payload);
 		String secret = SDKUtil.teamKey;
 		if(secret == null || secret.length() <= 0){
-			String s = "";
-			net.minidev.json.JSONObject jsonObj = new net.minidev.json.JSONObject();
-			userInfo.put("appsecret", SDKUtil.appSecret);
-			Payload pl= new Payload(jsonObj);
-			JWSHeader h = new JWSHeader(JWSAlgorithm.HS256);
-			JWSObject obj = new JWSObject(h, pl);
-//			String secret = "3d990d2276917dfac04467df11fff26d";
+//			String s = "";
+//			userInfo.put("appsecret", SDKUtil.appSecret);
+//			Payload pl= new Payload(userInfo);
+//			JWSHeader h = new JWSHeader(JWSAlgorithm.HS256);
+//			JWSObject obj = new JWSObject(h, pl);
 			try {
 				JWSSigner signer = new MACSigner(SDKUtil.appSecret.getBytes());
 				jwsObject.sign(signer);
-				String token = obj.serialize();
+				String token = jwsObject.serialize();
 				System.out.println("Serialised JWS object: " + token);
-				s = token;
+				secret = token;
 			} catch (JOSEException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			ApiClient.getTeamKey(myHandler, 2, s);
+			ApiClient.getTeamKey(myHandler, 2, secret);
 			return;
 		}
 		try {

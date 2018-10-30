@@ -7,6 +7,12 @@
     <color name="viewfinder_mask">#60000000</color>
     <color name="result_view">#b0000000</color>
     <color name="possible_result_points">#c0ffff00</color>
+
+    <color name="txt_black_light">#333333</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bg_blue">#58ACED</color>
+    <color name="text_yellow">#FFC800</color>
+
     
     <drawable name="notification_number_text_color">#ffffffff</drawable>
     <drawable name="ticker_background_color">#ff1d1d1d</drawable>

@@ -65,20 +65,6 @@ public class GetValidateCodeRequest extends ClientRequest {
 		msg.what = what;
 		msg.obj = resultStr;
 		handler.sendMessage(msg);
-		
-//		ValidateCodeResponse response = gson.fromJson(resultStr, ValidateCodeResponse.class);
-//		if(response.getCode() == 1){
-//			Message msg = Message.obtain();
-//			msg.what = what;
-//			msg.obj = response;
-//			handler.sendMessage(msg);
-//		}else{
-//			Message msg = Message.obtain();
-//			msg.what = 0;
-//			msg.obj = resultStr;
-//			handler.sendMessage(msg);
-//		}
-		
 	}
 	
 	@Override

@@ -16,6 +16,7 @@ import com.asiainfo.appframe.bean.MsgPushAuthResult;
 import com.asiainfo.appframe.msgpush.Client;
 import com.asiainfo.appframe.net.ApiClient;
 import com.asiainfo.appframe.net.logic.ValidateCodeResponse;
+import com.asiainfo.appframe.permission.AddPermission;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -26,6 +27,7 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.squareup.picasso.Picasso;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,7 +48,7 @@ public class WelcomeActivity extends BaseActivity {
 	
 	//Handler  
     @SuppressLint("HandlerLeak")
-	private Handler handler = new BaseHandler(){  
+	private Handler handler = new BaseHandler(){
   
         @SuppressLint("ShowToast")
 		@Override  
@@ -148,32 +150,40 @@ public class WelcomeActivity extends BaseActivity {
 		SDKUtil.getInstance(mContext, null);
 		
 		super.onCreate(savedInstanceState);
-		String secret = "";
-		net.minidev.json.JSONObject userInfo = new net.minidev.json.JSONObject();
-		userInfo.put("appsecret", SDKUtil.appSecret);
-		Payload payload= new Payload(userInfo);
-		JWSHeader header = new JWSHeader(JWSAlgorithm.HS256);
-		JWSObject jwsObject = new JWSObject(header, payload);
+
+
+		AddPermission addPermission = new AddPermission((Activity)mContext);
+		addPermission.addPermission(new AddPermission.PermissionsListener() {
+			@Override
+			public void onPermissionListener(boolean hasPermission, int code) {
+
+				String secret = "";
+				net.minidev.json.JSONObject userInfo = new net.minidev.json.JSONObject();
+				userInfo.put("appsecret", SDKUtil.appSecret);
+				Payload payload= new Payload(userInfo);
+				JWSHeader header = new JWSHeader(JWSAlgorithm.HS256);
+				JWSObject jwsObject = new JWSObject(header, payload);
 //		String secret = "3d990d2276917dfac04467df11fff26d";
-		try {
-			JWSSigner signer = new MACSigner(SDKUtil.appSecret.getBytes());
-			jwsObject.sign(signer);
-			String token = jwsObject.serialize();
-			System.out.println("Serialised JWS object: " + token);
-			secret = token;
-		} catch (JOSEException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		ApiClient.getTeamKey(handler, 2, secret);
-		
-		String ip = CommonUtil.getLocalIpAddress();
-		
-		int timestamp = (int)System.currentTimeMillis();
-		
-		String signature = MD5Util.md5(app_code + area_code + timestamp + staff_id + auth_secret);
-//		ApiClient.getMsgPushAuthRequest("", handler, 3, "1.0", staff_id, app_code, area_code, timestamp, ip, signature);
+				try {
+					JWSSigner signer = new MACSigner(SDKUtil.appSecret.getBytes());
+					jwsObject.sign(signer);
+					String token = jwsObject.serialize();
+					System.out.println("Serialised JWS object: " + token);
+					secret = token;
+				} catch (JOSEException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				ApiClient.getTeamKey(handler, 2, secret);
+				String ip = CommonUtil.getLocalIpAddress();
+
+				int timestamp = (int)System.currentTimeMillis();
+
+				String signature = MD5Util.md5(app_code + area_code + timestamp + staff_id + auth_secret);
+			}
+		}, AddPermission.CODE_PERMISSIONS_STORAGE);
+
 		
 	}
 	
@@ -184,8 +194,16 @@ public class WelcomeActivity extends BaseActivity {
 
 	@Override
 	public void initData() {
+
+		AddPermission addPermission = new AddPermission((Activity)mContext);
+		addPermission.addPermission(new AddPermission.PermissionsListener() {
+			@Override
+			public void onPermissionListener(boolean hasPermission, int code) {
+				ApiClient.preUiLayout(handler, 1, SDKUtil.app_id);
+			}
+		}, AddPermission.CODE_PERMISSIONS_STORAGE);
 		
-		ApiClient.preUiLayout(handler, 1, SDKUtil.app_id);
+
 	}
 	
 	public void jumpTo(Class<?> c, Bundle bundle){

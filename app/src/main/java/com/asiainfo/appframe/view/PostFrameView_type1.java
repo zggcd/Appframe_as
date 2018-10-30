@@ -253,7 +253,7 @@ public class PostFrameView_type1 extends RelativeLayout {
         viewPager.setFocusable(true);  
           
         viewPager.setAdapter(new MyPagerAdapter());
-        viewPager.setOnPageChangeListener(new MyPageChangeListener());  
+        viewPager.setOnPageChangeListener(new MyPageChangeListener());
     }
     
     private void jumpToWeb(String webUrl){
@@ -275,7 +275,7 @@ public class PostFrameView_type1 extends RelativeLayout {
         public void destroyItem(View container, int position, Object object) {  
             // TODO Auto-generated method stub  
             //((ViewPag.er)container).removeView((View)object);  
-            ((ViewPager)container).removeView(imageViewsList.get(position));  
+            ((ViewPager)container).removeView(imageViewsList.get(position));
         }  
   
         @Override

@@ -12,8 +12,8 @@ android {
         applicationId "com.asiainfo.appframe"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -22,10 +22,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -37,7 +41,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.google.code.gson:gson:2.8.4'
-//    implementation 'com.squareup.picasso:picasso:2.71828'
+    //    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     implementation files('libs/android-async-http-1.4.6.jar')
@@ -54,4 +58,19 @@ dependencies {
     implementation files('libs/picasso-2.5.2.jar')
     implementation files('libs/universal-image-loader-1.8.6-with-sources.jar')
     implementation files('libs/zxing-3.1.0.jar')
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //gson转换器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    //拦截器
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    // 必要rxjava2依赖
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    // 必要rxandrroid依赖，切线程时需要用到
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    // 必要依赖，和Rxjava结合必须用到
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'           //图表库
 }
