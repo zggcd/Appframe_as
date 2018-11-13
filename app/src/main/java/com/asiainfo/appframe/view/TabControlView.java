@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.asiainfo.appframe.R;
+import com.asiainfo.appframe.data.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class TabControlView extends LinearLayout implements View.OnClickListener
 
     public void setDefaultCheck() {
         if (mBTN_common != null) {
-//            mBTN_common.setCheck(Constants.BTN_FLAG_COMMON);
+            mBTN_common.setCheck(Constants.BTN_FLAG_HOME);
         }
     }
 
@@ -73,28 +74,28 @@ public class TabControlView extends LinearLayout implements View.OnClickListener
         int index = -1;
 
         if (mBTN_common != null) {
-            index = Constants.BTN_FLAG_COMMON;
+            index = Constants.BTN_FLAG_HOME;
             mBTN_common.setUnCheck(index);
-            mBTN_common.setText("常用");
-//            mBTN_common.setImage(R.mipmap.common_uncheck);
+            mBTN_common.setText("首页");
+            mBTN_common.setImage(R.mipmap.ic_home_nomal);
         }
         if (mBTN_discover != null) {
-            index = Constants.BTN_FLAG_DISCOVER;
+            index = Constants.BTN_FLAG_TASK;
             mBTN_discover.setUnCheck(index);
-            mBTN_discover.setText("发现");
-//            mBTN_discover.setImage(R.mipmap.discover_uncheck);
+            mBTN_discover.setText("任务");
+            mBTN_discover.setImage(R.mipmap.ic_task_nomal);
         }
         if (mBTN_classify != null) {
-            index = Constants.BTN_FLAG_CLASSIFY;
+            index = Constants.BTN_FLAG_MSG;
             mBTN_classify.setUnCheck(index);
-            mBTN_classify.setText("分类");
-//            mBTN_classify.setImage(R.mipmap.classify_uncheck);
+            mBTN_classify.setText("消息");
+            mBTN_classify.setImage(R.mipmap.ic_msg_nomal);
         }
         if (mBTN_mine != null) {
             index = Constants.BTN_FLAG_MINE;
             mBTN_mine.setUnCheck(index);
             mBTN_mine.setText("我的");
-//            mBTN_mine.setImage(R.mipmap.mine_uncheck);
+            mBTN_mine.setImage(R.mipmap.ic_mine_nomal);
         }
         setBtnListener();
 
@@ -113,24 +114,25 @@ public class TabControlView extends LinearLayout implements View.OnClickListener
     @Override
     public void onClick(View v) {
 
-        initTabControl();
-
         int index = -1;
 
         switch (v.getId()) {
             case R.id.btn_common:
-                index = Constants.BTN_FLAG_COMMON;
+                index = Constants.BTN_FLAG_HOME;
+                initTabControl();
                 mBTN_common.setCheck(index);
                 break;
             case R.id.btn_discover:
-                index = Constants.BTN_FLAG_DISCOVER;
-                mBTN_discover.setCheck(index);
+                index = Constants.BTN_FLAG_TASK;
+//                mBTN_discover.setCheck(index);
                 break;
             case R.id.btn_classify:
-                index = Constants.BTN_FLAG_CLASSIFY;
+                initTabControl();
+                index = Constants.BTN_FLAG_MSG;
                 mBTN_classify.setCheck(index);
                 break;
             case R.id.btn_mine:
+                initTabControl();
                 index = Constants.BTN_FLAG_MINE;
                 mBTN_mine.setCheck(index);
                 break;

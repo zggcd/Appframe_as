@@ -14,37 +14,42 @@
     <!-- 获取手机验证码 -->
     <!-- 获获取标签上的数字 -->
     <!-- 获取团队TeamKey -->
-    <string name="getUiLayout">http://61.160.128.138:9512/gateway/app/ui/home</string>
-	
-	<string name="getAccessToken">http://61.160.128.138:9512/gateway/auth/getAccessToken</string>
-	
-	<string name="refreshAccessToken">http://61.160.128.138:9512/gateway/auth/updateAccessToken</string>
-	
-	<string name="preUiLayout">http://61.160.128.138:9512/gateway/app/ui/pre</string>
-	
-	<string name="getAreaCode">http://61.160.128.138:9512/gateway/auth/getAreaCode</string>
-	
-	<string name="getValidateCode">http://61.160.128.138:9512/gateway/auth/getAuthCode</string>
-	
-	<string name="getPostNum">http://61.160.128.138:9512/gateway/app/invoke</string>
-	
-	<string name="getTeamKey">http://61.160.128.138:9512/gateway/app/getTeamKey</string>
-	<!-- 统一入口 -->
-	<string name="PortUrl">http://61.160.128.138:9512</string>
-	<!-- <string name="PortUrl">https://open.telecomjs.com</string> -->
+    <!--<string name="getUiLayout">http://61.160.128.138:9512/gateway/app/ui/home</string>-->
+	<!---->
+	<!--<string name="getAccessToken">http://61.160.128.138:9512/gateway/auth/getAccessToken</string>-->
+	<!---->
+	<!--<string name="refreshAccessToken">http://61.160.128.138:9512/gateway/auth/updateAccessToken</string>-->
+	<!---->
+	<!--<string name="preUiLayout">http://61.160.128.138:9512/gateway/app/ui/pre</string>-->
+	<!---->
+	<!--<string name="getAreaCode">http://61.160.128.138:9512/gateway/auth/getAreaCode</string>-->
+	<!---->
+	<!--<string name="getValidateCode">http://61.160.128.138:9512/gateway/auth/getAuthCode</string>-->
+	<!---->
+	<!--<string name="getPostNum">http://61.160.128.138:9512/gateway/app/invoke</string>-->
+	<!---->
+	<!--<string name="getTeamKey">http://61.160.128.138:9512/gateway/app/getTeamKey</string>-->
+
 	<!-- 小程序入口 -->
 	<!-- <string name="InvokeUrl">http://zc.testpub.net/gateway/special/invoke?</string> -->
-	
-	<color name="color_web_title">#21292c</color>
-	
 	<!-- <string name="APP_ID">app3429ab1f160d25db</string>
 	<string name="APPSECRET">9bfc2172d70baca374340db3b4f4ab85</string> -->
 	
 	<!-- <string name="APP_ID">app927032a4134363d3</string>
 	<string name="APPSECRET">de9987a8ef4b4b825e0246b827946aee</string> -->
 
+	<!--测试-->
+	<string name="PortUrl">http://61.160.128.138:9512</string>
 	<string name="APP_ID">app60b44a0844a9c0c4</string>
 	<string name="APPSECRET">8f8d027886cb7c06bace4d1740cfd92a</string>
+
+	<!-- 统一入口 -->
+	<!--正式-->
+	<!--<string name="PortUrl">https://open.telecomjs.com</string>-->
+	<!--<string name="APP_ID">appf7ae0d9350c4a574</string>-->
+	<!--<string name="APPSECRET">1c4ffe1ff01908430255fd6ead3364f9</string>-->
+
+
 	<!-- <string name="KEY_PUBLIC">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUtMAfg3Nhh0fS2Nzwa66Y W3p5hH3yOH9iHlRsBjYRTXbzzMnWy/Fb6ztv2ThIS2IRXi1PBzzWnrF/JQ4a LNdVOMDRX0OUBlfoEQH887+Q2FeXBEZXwfRtQQrnwUj+2HDri0hMzKVR1r65 kH/mytRS0R7uuY3mihgkVF/o8BWMFwIDAQAB</string> -->
 	<string name="KEY_PUBLIC">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUtMAfg3Nhh0fS2Nzwa66Y W3p5hH3yOH9iHlRsBjYRTXbzzMnWy/Fb6ztv2ThIS2IRXi1PBzzWnrF/JQ4a LNdVOMDRX0OUBlfoEQH887+Q2FeXBEZXwfRtQQrnwUj+2HDri0hMzKVR1r65 kH/mytRS0R7uuY3mihgkVF/o8BWMFwIDAQAB</string>
 	
@@ -54,6 +59,9 @@
     <string name="str_photo_dir">/Appframe/camera/</string>
     
     <!-- web标题栏 -->
-    <color name="web_title_bg">#21292b</color>
+    <color name="web_title_bg">#307CF9</color>
+	<color name="color_web_title">#307CF9</color>
+
+	<string name="versionXmlUrl">/version.xml</string>
     
 </resources>

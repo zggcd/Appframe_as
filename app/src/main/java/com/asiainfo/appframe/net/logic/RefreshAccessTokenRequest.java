@@ -23,7 +23,7 @@ public class RefreshAccessTokenRequest extends ClientRequest {
 		this.refresh_token = refresh_token;
 		this.mac = mac;
 		this.location = location;
-		formRequest(false, Constants.getInstance().refreshAccessToken);
+		formRequest(false, SDKUtil.RefreshAccessToken);
 	}
 	
 	public RefreshAccessTokenRequest(String url, Handler handler, int what, int location, String phone_num, String mac,String refresh_token) {

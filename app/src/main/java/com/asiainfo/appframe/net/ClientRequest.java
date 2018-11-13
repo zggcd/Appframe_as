@@ -108,7 +108,7 @@ public abstract class ClientRequest implements RequestResultCallback {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] arg1, String response) {
-				Log.d("Appframe", "== response ==>" +response );
+				Log.d("Appframe", "== response ==>" + response );
 				switch (statusCode) {
                 case 200:
                     onPostSuccess(response.toString());

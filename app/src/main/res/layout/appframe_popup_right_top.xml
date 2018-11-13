@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_centerHorizontal="true">
+
+    <ImageView
+        android:id="@+id/iv_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/appframe_layer_triangle_up"
+        app:layout_constraintRight_toRightOf="@+id/ll_choose"
+        android:paddingRight="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_choose"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_triangle"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/appframe_shape_dialog_bg_white"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/iv_triangle">
+
+        <LinearLayout
+            android:id="@+id/ll_quest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_question"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="问题"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_gohome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_go_home"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回首页"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

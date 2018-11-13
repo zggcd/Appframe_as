@@ -8,6 +8,7 @@ import android.os.Message;
 
 import com.asiainfo.appframe.data.Constants;
 import com.asiainfo.appframe.net.ClientRequest;
+import com.asiainfo.appframe.utils.SDKUtil;
 import com.loopj.android.http.RequestParams;
 
 public class GetTeamKeyRequest extends ClientRequest{
@@ -17,7 +18,7 @@ public class GetTeamKeyRequest extends ClientRequest{
 	public GetTeamKeyRequest(Handler handler, int wwhat, String secret) {
 		super(handler, wwhat);
 		this.secret = secret;
-		formRequest(false, Constants.getInstance().getTeamKey);
+		formRequest(false, SDKUtil.GetTeamKey);
 	}
 
 	@Override

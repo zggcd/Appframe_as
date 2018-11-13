@@ -7,12 +7,13 @@
 
     <ImageView
         android:id="@+id/iv_iamge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic_home_nomal"
         android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
         android:paddingRight="5dp"
         android:paddingLeft="5dp"/>
 
@@ -23,7 +24,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/iv_iamge"
-        android:text="常用"
+        android:text="首页"
         android:layout_marginBottom="5dp"/>
 
     <!--<ImageView-->

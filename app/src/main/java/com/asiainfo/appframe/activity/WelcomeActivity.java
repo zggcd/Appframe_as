@@ -151,7 +151,6 @@ public class WelcomeActivity extends BaseActivity {
 		
 		super.onCreate(savedInstanceState);
 
-
 		AddPermission addPermission = new AddPermission((Activity)mContext);
 		addPermission.addPermission(new AddPermission.PermissionsListener() {
 			@Override

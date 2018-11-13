@@ -1,24 +1,29 @@
 package com.asiainfo.appframe.utils;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
-import com.asiainfo.appframe.CommonApplication;
 import com.asiainfo.appframe.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -155,7 +160,7 @@ public class CommonUtil {
 	/*
 	 * 网络已连接，然后去判断wifi连接还是gprs连接
 	 */
-	private static void isNetworkAvailable(Context ctx){
+	public static boolean isNetworkAvailable(Context ctx){
 		@SuppressWarnings("deprecation")
 		State gprs = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();  
         @SuppressWarnings("deprecation")
@@ -167,7 +172,35 @@ public class CommonUtil {
         if(wifi == State.CONNECTED || wifi == State.CONNECTING){  
 //            Toast.makeText(ctx, "wifi is open! wifi", Toast.LENGTH_SHORT).show();
 //            loadAdmob();  
-        } 
+        }
+		return false;
+	}
+
+	/**
+	 * 判断网络是否链接
+	 *
+	 * @param ctx
+	 * @return boolean
+	 */
+	public static boolean isNetworkAvailableNew(Context ctx) {
+		Context context = ctx;
+		ConnectivityManager connectivity = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connectivity == null) {
+			Log.i("CommonUtil", "无网络连接");
+			return false;
+		} else {
+			NetworkInfo[] info = connectivity.getAllNetworkInfo();
+			if (info != null) {
+				for (int i = 0; i < info.length; i++) {
+					if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+						return true;
+					}
+				}
+			}
+		}
+		Log.i("CommonUtil", "无网络连接");
+		return false;
 	}
 	
 	public static ProgressDialog commonProgressDialog = null;
@@ -231,5 +264,70 @@ public class CommonUtil {
 		  } 
 	  return null; 
 	}
-	
+
+	/**
+	 * 关闭程序
+	 *
+	 * @param act
+	 */
+	public static void systemExit(Activity act) {
+		// System.exit(1);
+		act.finish();
+		killProcess();
+
+	}
+
+	/**
+	 * 杀掉应用进程
+	 */
+	public static void killProcess() {
+		try {
+			Runtime.getRuntime().exec("kill -9 " + android.os.Process.myPid());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 自定义布局弹出框
+	 *
+	 * @param activity
+	 * @param view
+	 * @param widthPx
+	 * @param heightPx
+	 * @return
+	 */
+	public static Dialog showDialog(Activity activity, View view, int widthPx,
+									int heightPx) {
+
+		final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		Dialog dialog = builder.show();
+		dialog.getWindow().setContentView(view);
+		WindowManager.LayoutParams layoutParams = dialog.getWindow()
+				.getAttributes();
+		layoutParams.width = widthPx;
+		layoutParams.height = heightPx;
+		dialog.getWindow().setAttributes(layoutParams);
+		dialog.setCanceledOnTouchOutside(false);
+		return dialog;
+	}
+
+	/**
+	 * 获取本地软件版本号
+	 */
+	public static PackageInfo getLocalVersion(Context ctx) {
+		int localVersion = 0;
+		try {
+			PackageInfo packageInfo = ctx.getApplicationContext()
+					.getPackageManager()
+					.getPackageInfo(ctx.getPackageName(), 0);
+//			localVersion = packageInfo.versionCode;
+			return packageInfo;
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
 }

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.asiainfo.appframe.R;
+import com.asiainfo.appframe.data.Constants;
 
 /**
  * Created by stiven on 2017/8/9 0009.
@@ -91,20 +92,20 @@ public class ButtomTabView extends RelativeLayout {
 
         int checkDrawableId = -1;
         switch (itemId){
-//            case Constants.BTN_FLAG_COMMON:
-//                checkDrawableId = R.mipmap.common_check;
-//                break;
-//            case Constants.BTN_FLAG_DISCOVER:
-//                checkDrawableId = R.mipmap.discover_check;
-//                break;
-//            case Constants.BTN_FLAG_CLASSIFY:
-//                checkDrawableId = R.mipmap.classify_check;
-//                break;
-//            case Constants.BTN_FLAG_MINE:
-//                checkDrawableId = R.mipmap.mine_check;
-//                break;
-//            default:
-//                break;
+            case Constants.BTN_FLAG_HOME:
+                checkDrawableId = R.mipmap.ic_home_light;
+                break;
+            case Constants.BTN_FLAG_TASK:
+                checkDrawableId = R.mipmap.ic_task_light;
+                break;
+            case Constants.BTN_FLAG_MSG:
+                checkDrawableId = R.mipmap.ic_msg_light;
+                break;
+            case Constants.BTN_FLAG_MINE:
+                checkDrawableId = R.mipmap.ic_mine_light;
+                break;
+            default:
+                break;
         }
 
         if(mTV_text != null){
@@ -122,20 +123,20 @@ public class ButtomTabView extends RelativeLayout {
 
         int uncheckDrawableId = -1;
         switch (itemId){
-//            case Constants.BTN_FLAG_COMMON:
-//                uncheckDrawableId = R.mipmap.common_uncheck;
-//                break;
-//            case Constants.BTN_FLAG_DISCOVER:
-//                uncheckDrawableId = R.mipmap.discover_uncheck;
-//                break;
-//            case Constants.BTN_FLAG_CLASSIFY:
-//                uncheckDrawableId = R.mipmap.classify_uncheck;
-//                break;
-//            case Constants.BTN_FLAG_MINE:
-//                uncheckDrawableId = R.mipmap.mine_uncheck;
-//                break;
-//            default:
-//                break;
+            case Constants.BTN_FLAG_HOME:
+                uncheckDrawableId = R.mipmap.ic_home_nomal;
+                break;
+            case Constants.BTN_FLAG_TASK:
+                uncheckDrawableId = R.mipmap.ic_task_nomal;
+                break;
+            case Constants.BTN_FLAG_MSG:
+                uncheckDrawableId = R.mipmap.ic_msg_nomal;
+                break;
+            case Constants.BTN_FLAG_MINE:
+                uncheckDrawableId = R.mipmap.ic_mine_nomal;
+                break;
+            default:
+                break;
         }
 
         if(mTV_text != null){

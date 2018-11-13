@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parant">
 
     <!--<com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lc"
@@ -110,6 +111,14 @@
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:lines="1"/>
+        <ImageView
+            android:id="@+id/iv_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_eye"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:padding="10dp"/>
 
         <TextView
             android:id="@+id/tv_login_forget_pwd"
@@ -119,6 +128,7 @@
             android:textColor="#2D8FFD"
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
+            android:visibility="gone"
              />
 
     </LinearLayout>

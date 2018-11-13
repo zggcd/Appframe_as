@@ -15,7 +15,11 @@ import android.widget.Toast;
 public class CommonApplication extends Application{
 	
 	private static CommonApplication application;
-	
+
+    public boolean isVersionChecked;
+    public String versionName;
+    public String versionCode;
+
 //	//DATA
 //	public static String app_id = "appf7ae0d9350c4a574";
 //	public static String appSecret = "1c4ffe1ff01908430255fd6ead3364f9";
@@ -37,14 +41,14 @@ public class CommonApplication extends Application{
 	}
 	
 	private void init(){
-		Constants.getInstance().getUiLayout = this.getResources().getString(R.string.getUiLayout);
-		Constants.getInstance().getAccessToken = this.getResources().getString(R.string.getAccessToken);
-		Constants.getInstance().refreshAccessToken = this.getResources().getString(R.string.refreshAccessToken);
-		Constants.getInstance().preUiLayout = this.getResources().getString(R.string.preUiLayout);
-		Constants.getInstance().getAreaCode = this.getResources().getString(R.string.getAreaCode);
-		Constants.getInstance().getValidateCode = this.getResources().getString(R.string.getValidateCode);
-		Constants.getInstance().getPostNum = this.getResources().getString(R.string.getPostNum);
-		Constants.getInstance().getTeamKey = this.getResources().getString(R.string.getTeamKey);
+//		Constants.getInstance().getUiLayout = this.getResources().getString(R.string.getUiLayout);
+//		Constants.getInstance().getAccessToken = this.getResources().getString(R.string.getAccessToken);
+//		Constants.getInstance().refreshAccessToken = this.getResources().getString(R.string.refreshAccessToken);
+//		Constants.getInstance().preUiLayout = this.getResources().getString(R.string.preUiLayout);
+//		Constants.getInstance().getAreaCode = this.getResources().getString(R.string.getAreaCode);
+//		Constants.getInstance().getValidateCode = this.getResources().getString(R.string.getValidateCode);
+//		Constants.getInstance().getPostNum = this.getResources().getString(R.string.getPostNum);
+//		Constants.getInstance().getTeamKey = this.getResources().getString(R.string.getTeamKey);
 	}
 	
 	/**

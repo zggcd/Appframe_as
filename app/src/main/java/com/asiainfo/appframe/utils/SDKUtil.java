@@ -35,23 +35,39 @@ public class SDKUtil {
 	public static String InvokeUrl;					//小程序URL
 	public static String ValidateCodeUrl;				//获取验证码
 	public static String ResetPwdAuthUrl;				//获取重置密码验证码
-	public static String ModifyPwdAuthUrl;				//修改面膜url
+	public static String ModifyPwdAuthUrl;				//修改密码url
 	public static String ResetPwdUrl;				//重置密码
+	public static String GetAPPFrontUI;				//获取首页布局信息    新
 	public static String AreaCodeUrl;					//获取地区码
 	public static String AccessTokenUrl;				//获取accesstoken，登录
 	public static String refreshAccessTokenUrl;		//刷新accesstoken
 	public static String UAccessTokenUrl;				//获取Uname相关的accesstoken
-
 	public static String UploadImageUrl;				//图片上传接口
-
 	public static String jumpToWebUrl;					//跳转web页
+	public static String GetAutoPwdUrl;					//获取随机密码
+	public static String QrcodeScan;					//扫描二维码
+	public static String QrcodeLogin;					//扫码登录确认
+	public static String QrcodeCancel;					//取消扫码登录
+	public static String sessionUrl;					//会话接口
+	public static String creatSessionUrl;				//创建会话接口
+	public static String queryVersionUpdateInfoUrl;				//检测更新接口
 
 	//nomal url
 	private static String UpdateDeviceInfoUrl;
 	public static String RecordH5Invoke;
 
+	public static String GetUiLayout = "http://61.160.128.138:9512/gateway/app/ui/home";
+	public static String GetAccessToken = "http://61.160.128.138:9512/gateway/auth/getAccessToken";
+	public static String RefreshAccessToken = "http://61.160.128.138:9512/gateway/auth/updateAccessToken";
+	public static String PreUiLayout = "http://61.160.128.138:9512/gateway/app/ui/pre";
+	public static String GetAreaCode = "http://61.160.128.138:9512/gateway/auth/getAreaCode";
+	public static String GetValidateCode = "http://61.160.128.138:9512/gateway/auth/getAuthCode";
+	public static String GetPostNum = "http://61.160.128.138:9512/gateway/app/invoke";
+	public static String GetTeamKey = "http://61.160.128.138:9512/gateway/app/getTeamKey";
+
 	public static String accessToken = "";
 	public static String refreshToken = "";
+	public static String authInfoResult = "";//用户登录返回信息
 	public static String phone_num = "";
 	public static String staff_id = "";
 	public static String app_id = "";
@@ -66,15 +82,19 @@ public class SDKUtil {
 	public static String area_code = "";
 
 	public static String uuid;//app唯一识别号
+	public static String packageVersion;//版本号
+	public static String packageVersionName;//版本名称
 
 	private static AddPermission addPermission;
 
-	SharedPreferences mSP;
+	public static SharedPreferences mSP;
 	private AuthHandler authHandler = null;
 	//登录信息回调
 	private SDKAuthCallBack callback;
 	private SDKResetPwdCallback resetPwdCallback = null;
 	private SDKModifyPwdCallback modifyPwdCallback = null;
+	private SDKRandomPasswordCallback randomPasswordCallback = null;
+	private SDKQrcodeCallback qrcodeCallback = null;
 
 	private static SDKUtil sdkUtil = null;
 
@@ -97,6 +117,8 @@ public class SDKUtil {
 		this.appSecret = context.getResources().getString(ResourceUtil.getStringId(context, "APPSECRET"));
 		this.key_public = context.getResources().getString(ResourceUtil.getStringId(context, "KEY_PUBLIC"));
 		this.mac = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
+		this.packageVersion = CommonUtil.getLocalVersion(context).versionCode + "";
+		this.packageVersionName = CommonUtil.getLocalVersion(context).versionName + "";
 		addPermission = new AddPermission((Activity)context);
 		addPermission.addPermission(permissionsListener, AddPermission.CODE_PERMISSIONS_STORAGE);
 
@@ -128,7 +150,17 @@ public class SDKUtil {
 		this.modifyPwdCallback = modifyPwdCallback;
 	}
 
+	/**
+	 * 获取随机密码
+	 * @param callback
+	 */
+	public void setSDKRandomPasswordCallback(SDKRandomPasswordCallback callback){
+		this.randomPasswordCallback = callback;
+	}
 
+	public void setSDKQrcodeCallback(SDKQrcodeCallback callback){
+		this.qrcodeCallback = callback;
+	}
 
 	/**
 	 * 重置，解决串联分页面不方便调用的问题
@@ -162,17 +194,33 @@ public class SDKUtil {
 		ResetPwdAuthUrl = PortUrl + "/gateway/auth/getAuthCode";//和登录获取验证码接口一样
 		ModifyPwdAuthUrl = PortUrl + "/gateway/auth/modifyPwd";//修改密碼
 		ResetPwdUrl = PortUrl + "/gateway/auth/resetPwd";//重置密碼接口
+		GetAPPFrontUI = PortUrl + "/gateway/app/ui/getAppFrontUI";//获取首页布局信息   新
 		AreaCodeUrl = PortUrl + "/gateway/auth/getAreaCode";
 		AccessTokenUrl = PortUrl + "/gateway/auth/getAccessToken";
 		UAccessTokenUrl = PortUrl + "/gateway/auth/getUAccessToken";
 		refreshAccessTokenUrl = PortUrl + "/gateway/auth/updateAccessToken";
 		jumpToWebUrl = PortUrl + "/gateway/app/invoke";
-		
 		UploadImageUrl = PortUrl + "/gateway/common/out/upload?";
-		
 		UpdateDeviceInfoUrl = PortUrl + "/gateway/auth/getDevice";
 		RecordH5Invoke = PortUrl +"/gateway/common/out/recordH5Invoke";
-		
+		GetAutoPwdUrl = PortUrl +"/gateway/auth/getRandomPwd";
+		QrcodeScan = PortUrl +"/gateway/auth/qrcodeScan";
+		QrcodeLogin = PortUrl +"/gateway/auth/qrcodeLogin";
+		QrcodeCancel = PortUrl +"/gateway/auth/qrcodeCancel";
+
+		GetUiLayout = PortUrl + "/gateway/app/ui/home";
+		GetAccessToken = PortUrl + "/gateway/auth/getAccessToken";
+		RefreshAccessToken = PortUrl + "/gateway/auth/updateAccessToken";
+		PreUiLayout = PortUrl + "/gateway/app/ui/pre";
+		GetAreaCode = PortUrl + "/gateway/auth/getAreaCode";
+		GetValidateCode = PortUrl + "/gateway/auth/getAuthCode";
+		GetPostNum = PortUrl + "/gateway/app/invoke";
+		GetTeamKey = PortUrl + "/gateway/app/getTeamKey";
+
+		creatSessionUrl = "https://ztyx.telecomjs.com/gateway/createSession";
+		sessionUrl = "https://ztyx.telecomjs.com/gateway/bizReq";
+		queryVersionUpdateInfoUrl = "http://ztyx.telecomjs.com/ecs_appmanager/service/http/queryVersionUpdateInfo.do?";
+
 		authHandler = new AuthHandler();
 		mSP = context.getSharedPreferences("APPFRAME_SDK", Context.MODE_PRIVATE);
 	}
@@ -183,6 +231,7 @@ public class SDKUtil {
 	private void initData(){
 		accessToken = mSP.getString("accessToken", "");
 		refreshToken = mSP.getString("refreshToken", "");
+		authInfoResult = mSP.getString("authInfoResult", "");
 		phone_num = mSP.getString("phone_num", "");
 		staff_id = mSP.getString("staff_id", "");
 		teamKey = mSP.getString("teamKey", "");
@@ -322,6 +371,40 @@ public class SDKUtil {
 	}
 
 	/**
+	 * 获取随机密码
+	 */
+	public void getAutoPwd(){
+		ApiClient.getAutoPwd(GetAutoPwdUrl, authHandler, 14);
+	}
+
+	/**
+	 * 扫码后调用接口
+	 * @param accessToken
+	 * @param qrCode
+	 */
+	public void qrcodeScan(String accessToken, String qrCode){
+		ApiClient.qrcodeScan(QrcodeScan, authHandler, 15, accessToken, qrCode);
+	}
+
+	/**
+	 * 扫码后确认登录
+	 * @param accessToken
+	 * @param qrCode
+	 */
+	public void qrcodeLogin(String accessToken, String qrCode){
+		ApiClient.qrcodeScan(QrcodeLogin, authHandler, 16, accessToken, qrCode);
+	}
+
+	/**
+	 * 扫码后取消登录
+	 * @param accessToken
+	 * @param qrCode
+	 */
+	public void qrcodeCancel(String accessToken, String qrCode){
+		ApiClient.qrcodeScan(QrcodeCancel, authHandler, 17, accessToken, qrCode);
+	}
+
+	/**
 	 * 修改密码
 	 * @param accessToken	账号
 	 * @param password   手机号
@@ -333,6 +416,15 @@ public class SDKUtil {
 			return;
 		}
 		ApiClient.modifyPwd(ResetPwdUrl, authHandler, 13, accessToken, password, nPassword, First);
+	}
+
+	/**
+	 * 获取首页布局信息
+	 * http://61.160.128.138:9512/gateway/app/ui/getAppFrontUI
+	 * @param accessToken
+	 */
+	public void getAppFrontUI(String accessToken){
+		ApiClient.getAppFrontUI("http://61.160.128.138:9512/gateway/app/ui/getAppFrontUI", authHandler, 14, SDKUtil.accessToken);
 	}
 	
 	private class AuthHandler extends Handler{
@@ -356,10 +448,12 @@ public class SDKUtil {
 					accessToken = response.getAccess_token();
 					refreshToken = response.getRefreshtoken();
 					String authInfo = gson.toJson(response.getAuthInfoResult());
+					authInfoResult = authInfo;
 					
 					Editor editor = mSP.edit();
 					editor.putString("accessToken", accessToken);
 					editor.putString("refreshToken", refreshToken);
+					editor.putString("authInfoResult", authInfoResult);
 					editor.putString("phone_num", phone_num);
 					editor.putString("staff_id", staff_id);
 					editor.commit();
@@ -401,10 +495,11 @@ public class SDKUtil {
 				if(accessTokenResponse.getCode() == 1){
 					
 					accessToken = accessTokenResponse.getAccess_token();
-					refreshToken = accessTokenResponse.getRefreshtoken();
+//					refreshToken = accessTokenResponse.getRefreshtoken();
 					
 					Editor editor = mSP.edit();
 					editor.putString("accessToken", accessToken);
+//					editor.putString("refreshToken", refreshToken);
 					editor.commit();
 					
 					JsonObject jo = new JsonObject();
@@ -503,6 +598,31 @@ public class SDKUtil {
 					modifyPwdCallback.onModifyPwdCallback(resultModify);
 				}
 				break;
+			case 14://获取随机密码
+				String resultAutoPwd = (String) msg.obj;
+				if (resultAutoPwd != null){
+					randomPasswordCallback.onRandomPasswordSuccess(resultAutoPwd);
+				}
+				break;
+
+			case 15://扫码登录
+				String resultQrcode = (String) msg.obj;
+				if (!StringUtil.isEmpty(resultQrcode)){
+					qrcodeCallback.onQrcodeScanCallback(resultQrcode);
+				}
+				break;
+			case 16://扫码登录确认
+				String resultQrcodeLogin = (String) msg.obj;
+				if (!StringUtil.isEmpty(resultQrcodeLogin)){
+					qrcodeCallback.onQrcodeLoginCallback(resultQrcodeLogin);
+				}
+				break;
+			case 17://扫码登录取消
+				String resultQrcodeCancel= (String) msg.obj;
+				if (!StringUtil.isEmpty(resultQrcodeCancel)){
+					qrcodeCallback.onQrcodeCancelCallback(resultQrcodeCancel);
+				}
+				break;
 			case 0:
 				String errMsg = (String) msg.obj;
 				callback.onError(errMsg);
@@ -511,5 +631,18 @@ public class SDKUtil {
 				break;
 			}
 		}
+	}
+
+	public static void cleanUserInfo(){
+		if (mSP != null){
+			Editor editor = mSP.edit();
+			editor.putString("accessToken", "");
+			editor.putString("refreshToken", "");
+			editor.putString("authInfoResult", "");
+			editor.putString("phone_num", "");
+			editor.putString("staff_id", "");
+			editor.commit();
+		}
+
 	}
 }

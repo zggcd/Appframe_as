@@ -34,7 +34,7 @@ public class GetAccessTokenRequest extends ClientRequest  {
 		this.app_secret = app_secret;
 		this.staff_id = staff_id;
 		this.basecode = basecode;
-		formRequest(false, Constants.getInstance().getAccessToken);
+		formRequest(false, SDKUtil.GetAccessToken);
 	}
 	
 	public GetAccessTokenRequest(String url, Handler handler, int what, String phone_num, String password, String basecode, String app_id, String area_code, String mac, String staff_code, String app_secret, String staff_id) {

@@ -24,7 +24,7 @@ public class GetValidateCodeRequest extends ClientRequest {
 	
 	public GetValidateCodeRequest(Handler handler, int what, String phone_num, String app_id) {
 		super(handler, what);
-		formRequest(false, Constants.getInstance().getValidateCode + "?phone_num=" + phone_num + "&app_id=" + app_id);
+		formRequest(false, SDKUtil.GetValidateCode + "?phone_num=" + phone_num + "&app_id=" + app_id);
 	}
 	
 	public GetValidateCodeRequest(String url, Handler handler, int what, String phone_num, String app_id) {

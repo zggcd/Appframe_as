@@ -25,14 +25,36 @@ public class Constants {
 		}
 		return constants;
 	}
-	
-	public String getUiLayout;
-	public String getAccessToken;
-	public String refreshAccessToken;
-	public String preUiLayout;
-	public String getAreaCode;
-	public String getValidateCode;
-	public String getPostNum;
-	public String getTeamKey;
+
+	//button标识
+	public static final int BTN_FLAG_HOME = 0x01;
+	public static final int BTN_FLAG_TASK = 0x01 << 1;
+	public static final int BTN_FLAG_MSG = 0x01 << 2;
+	public static final int BTN_FLAG_MINE = 0x01 << 3;
+
+	//fragment标识
+	public static final String FRAGMENT_FLAG_HOME = "首页";
+	public static final String FRAGMENT_FLAG_TASK = "任务";
+	public static final String FRAGMENT_FLAG_MSG = "消息";
+	public static final String FRAGMENT_FLAG_MINE = "我的";
+
+	public final String SHAREDPREFERENCES_NAME = "first_pref";
+	// 存储文件
+	public String PREFS_NAME = "SOMS.com";
+	public String desktopApkUrl;
+	/**
+	 * 忽略更新
+	 */
+	public static final String IGNORE = "ignore";
+	public static final String desktopUrl = "https://ztyx.telecomjs.com/Android";
+
+//	public String getUiLayout;
+//	public String getAccessToken;
+//	public String refreshAccessToken;
+//	public String preUiLayout;
+//	public String getAreaCode;
+//	public String getValidateCode;
+//	public String getPostNum;
+//	public String getTeamKey;
 	
 }

@@ -97,7 +97,6 @@ public class HomeActivity extends AppCompatActivity {
     private void initView() {
         View view = findViewById(R.id.content);
         ll_content = view.findViewById(R.id.ll_content);
-
     }
 
     private void initData() {

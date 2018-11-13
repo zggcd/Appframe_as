@@ -20,7 +20,7 @@ public class GetAreaCodeRequest extends ClientRequest {
 	public GetAreaCodeRequest(Handler handler, int what, String username) {
 		super(handler, what);
 		this.username = username;
-		formRequest(false, com.asiainfo.appframe.data.Constants.getInstance().getAreaCode);
+		formRequest(false, SDKUtil.GetAreaCode);
 	}
 	
 	public GetAreaCodeRequest(String url, Handler handler, int what, String username) {

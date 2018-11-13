@@ -51,7 +51,7 @@ public class GetPostNumRequest extends ClientRequest {
 			e.printStackTrace();
 		}
 		
-		formRequest(false, com.asiainfo.appframe.data.Constants.getInstance().getPostNum + 
+		formRequest(false, SDKUtil.GetPostNum +
 				"?access_token=" + SDKUtil.accessToken + 
 				"&signature=" + signature);
 	}

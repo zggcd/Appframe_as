@@ -34,7 +34,7 @@ public class GetUiInfo extends ClientRequest {
 		this.app_id = app_id;
 		this.au_id = au_id;
 		this.appsecret = appsecret;
-		formRequest(false, com.asiainfo.appframe.data.Constants.getInstance().getUiLayout + "?access_token=" + SDKUtil.accessToken);
+		formRequest(false, SDKUtil.GetUiLayout + "?access_token=" + SDKUtil.accessToken);
 	}
 
 	@Override

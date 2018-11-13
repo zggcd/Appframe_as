@@ -11,6 +11,16 @@ public class SDKAccessTokenResponse {
 	private String msg;
 	private String authInfoResult;
 	private String expires_in;
+	private String staff_state;
+
+	public String getStaff_state() {
+		return staff_state;
+	}
+
+	public void setStaff_state(String staff_state) {
+		this.staff_state = staff_state;
+	}
+
 	public int getCode() {
 		return code;
 	}

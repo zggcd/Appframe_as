@@ -14,7 +14,16 @@ public class AuthInfoResult {
 	private String staffid;
 	private String staffname;
 	private String staffcode;
-	
+	private String areaName;
+
+	public String getAreaName() {
+		return areaName;
+	}
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
+
 	public String getStaffcode() {
 		return staffcode;
 	}

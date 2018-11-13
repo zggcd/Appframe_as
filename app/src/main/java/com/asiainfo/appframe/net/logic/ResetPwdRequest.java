@@ -25,7 +25,7 @@ public class ResetPwdRequest extends MsgPushClientRequest {
         this.username = username;
         this.smscode = smscode;
         this.nPassword = nPassword;
-        formRequest(false, Constants.getInstance().refreshAccessToken);
+        formRequest(false, SDKUtil.RefreshAccessToken);
     }
 
     public ResetPwdRequest(String url, Handler handler, int what, String username, String smscode, String nPassword) {

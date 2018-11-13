@@ -5,6 +5,7 @@ import android.os.Message;
 
 import com.asiainfo.appframe.bean.HomePageInfo;
 import com.asiainfo.appframe.net.ClientRequest;
+import com.asiainfo.appframe.utils.SDKUtil;
 import com.loopj.android.http.RequestParams;
 
 /**
@@ -19,7 +20,7 @@ public class preUiLayout extends ClientRequest  {
 	public preUiLayout(Handler handler, int what, String app_id) {
 		super(handler, what);
 		this.app_id = app_id;
-		formRequest(false, com.asiainfo.appframe.data.Constants.getInstance().preUiLayout);
+		formRequest(false, SDKUtil.PreUiLayout);
 		// TODO Auto-generated constructor stub
 	}
 

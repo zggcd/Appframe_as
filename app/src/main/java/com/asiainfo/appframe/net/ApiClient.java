@@ -4,8 +4,11 @@ import java.util.Date;
 import java.util.Map;
 
 import com.asiainfo.appframe.net.logic.AbilityRequest;
+import com.asiainfo.appframe.net.logic.AppFrontUiRequest;
+import com.asiainfo.appframe.net.logic.CheckUpgradeRequest;
 import com.asiainfo.appframe.net.logic.GetAccessTokenRequest;
 import com.asiainfo.appframe.net.logic.GetAreaCodeRequest;
+import com.asiainfo.appframe.net.logic.GetAutlPwdRequest;
 import com.asiainfo.appframe.net.logic.GetClickUrlRequest;
 import com.asiainfo.appframe.net.logic.GetPostNumRequest;
 import com.asiainfo.appframe.net.logic.GetTeamKeyRequest;
@@ -14,6 +17,7 @@ import com.asiainfo.appframe.net.logic.GetUiInfo;
 import com.asiainfo.appframe.net.logic.GetValidateCodeRequest;
 import com.asiainfo.appframe.net.logic.JumpToWebWindowRequest;
 import com.asiainfo.appframe.net.logic.ModifyPwdRequest;
+import com.asiainfo.appframe.net.logic.QrcodeScanRequest;
 import com.asiainfo.appframe.net.logic.RecordH5InvokeRequest;
 import com.asiainfo.appframe.net.logic.RefreshAccessTokenRequest;
 import com.asiainfo.appframe.net.logic.ResetPwdRequest;
@@ -220,6 +224,22 @@ public class ApiClient {
 	}
 
 	/**
+	 * 生成随机密码
+	 */
+	public static void getAutoPwd(String url, Handler handler, int what){
+		GetAutlPwdRequest resquest = new GetAutlPwdRequest(url, handler, what);
+		resquest.start();
+	}
+
+	/**
+	 * 扫码登录判断
+	 */
+	public static void qrcodeScan(String url, Handler handler, int what, String accessToken, String qrCode){
+		QrcodeScanRequest resquest = new QrcodeScanRequest(url, handler, what, accessToken, qrCode);
+		resquest.start();
+	}
+
+	/**
 	 * 修改密码
 	 * @param url
 	 * @param handler
@@ -233,6 +253,19 @@ public class ApiClient {
 		ModifyPwdRequest resqest = new ModifyPwdRequest(url, handler, what, accesstoken, password, nPassword, First);
 		resqest.start();
 	}
+
+	/**
+	 * 获取首页信息  新版
+	 * @param url
+	 * @param handler
+	 * @param what
+	 * @param accesstoken
+	 */
+	public static void getAppFrontUI(String url, Handler handler, int what, String accesstoken){
+		AppFrontUiRequest request = new AppFrontUiRequest(url, handler, what, accesstoken);
+		request.start();
+	}
+
 
 	/**
 	 * 获取验证码		指定url
@@ -309,6 +342,16 @@ public class ApiClient {
 	
 	public static void getMsgPushAuthRequest(String url, Handler handler, int what, String version, String staff_id, String app_code, String area_code, int timestamp, String ip, String signature ){
 		MsgPushAuthRequest request= new MsgPushAuthRequest(url, handler, what, version, staff_id, app_code, area_code, timestamp, ip, signature);
+		request.start();
+	}
+
+	/**
+	 * 检测版本更新接口
+	 * @param handler
+	 * @param what
+	 */
+	public static void UpgradeVersion(Handler handler, int what, String curVersionNum){
+		CheckUpgradeRequest request = new CheckUpgradeRequest(handler, what, curVersionNum);
 		request.start();
 	}
 	

@@ -69,7 +69,7 @@ public class GetClickUrlRequest  extends ClientRequest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		formRequest(false, com.asiainfo.appframe.data.Constants.getInstance().getPostNum + 
+		formRequest(false, SDKUtil.GetPostNum +
 				"?access_token=" + SDKUtil.accessToken + 
 				"&signature=" + signature);
 	}

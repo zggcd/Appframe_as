@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
@@ -18,36 +19,35 @@
         android:layout_height="@dimen/top_title_height"
         android:background="@color/color_web_title" >
 
-        <LinearLayout
-            	android:id="@+id/ll_back"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+        <!--<LinearLayout-->
+            	<!--android:id="@+id/ll_back"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp">-->
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:clickable="false"
-                    android:src="@drawable/appframe_back_button" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="20dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:clickable="false"-->
+                    <!--android:src="@drawable/appframe_back_button" />-->
+            <!--</LinearLayout>-->
             
         <LinearLayout
             android:id="@+id/ll_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_toRightOf="@id/ll_back"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:clickable="false"
                     android:src="@drawable/appframe_close" />
             </LinearLayout>
@@ -72,7 +72,8 @@
                 android:gravity="center_vertical"
                 android:onClick="showRightPopMenu"
                 android:paddingLeft="20dp"
-                android:paddingRight="13dp" >
+                android:paddingRight="13dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -80,17 +81,81 @@
                     android:clickable="false"
                     android:src="@drawable/appframe_edit_windows" />
             </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_more"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:onClick="showRightPopMenu"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:clickable="false"
+                android:src="@mipmap/ic_more" />
+        </LinearLayout>
+
         </RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/rl_webcontent"
         android:layout_below="@+id/rl_top"
+        android:layout_above="@+id/ll_bottom_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         
 
     </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/ll_back"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_wv_back"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_wv_forword"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:padding="10dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
     
     
 

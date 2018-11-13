@@ -1,69 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/main_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:layout_above="@+id/ll_bottom_view">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#307CF9">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+        <ImageView
+            android:id="@+id/iv_scancode"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/scancode"
+            android:layout_margin="13dp"/>
 
-            <!--<android.support.design.widget.CollapsingToolbarLayout-->
-                <!--android:id="@+id/toolbar_layout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:fitsSystemWindows="true"-->
-                <!--app:contentScrim="?attr/colorPrimary"-->
-                <!--app:statusBarScrim="@android:color/black"-->
-                <!--app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"-->
-                <!--app:toolbarId="@+id/toolbar">-->
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:textCursorDrawable="@drawable/appframe_shape_cursor"
+            android:background="@drawable/appframe_shape_edittext_seach"
+            android:hint="营业精灵报账"
+            android:textColorHint="#666666"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"/>
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/colorPrimary"
-                    app:layout_scrollFlags="scroll|enterAlways"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    app:layout_collapseMode="pin"
-                    app:contentInsetStart="0dp"
-                    app:navigationIcon="@mipmap/scancode"
-                    android:fitsSystemWindows="true"
-                    >
+        <ImageView
+            android:id="@+id/iv_msg"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/ic_more"
+            android:layout_margin="13dp"/>
 
-                    <EditText
-                        android:id="@+id/et_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:padding="5dp"
-                        android:textCursorDrawable="@drawable/appframe_shape_cursor"
-                        android:background="@drawable/appframe_shape_edittext_seach"
-                        android:hint="营业精灵报账"
-                        android:textColorHint="#666666"
-                        android:gravity="center_vertical" />
+    </LinearLayout>
 
-                </android.support.v7.widget.Toolbar>
+    <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/main_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:fitsSystemWindows="true"-->
+        <!--android:layout_above="@+id/ll_bottom_view">-->
 
-            <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+        <!--<android.support.design.widget.AppBarLayout-->
+            <!--android:id="@+id/appbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--android:theme="@style/AppTheme.AppBarOverlay">-->
 
-        </android.support.design.widget.AppBarLayout>
+            <!--&lt;!&ndash;<android.support.design.widget.CollapsingToolbarLayout&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/toolbar_layout"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:fitsSystemWindows="true"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:contentScrim="?attr/colorPrimary"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:statusBarScrim="@android:color/black"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:toolbarId="@+id/toolbar">&ndash;&gt;-->
+
+                <!--<android.support.v7.widget.Toolbar-->
+                    <!--android:id="@+id/toolbar"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="?attr/colorPrimary"-->
+                    <!--app:layout_scrollFlags="snap"-->
+                    <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+                    <!--app:layout_collapseMode="pin"-->
+                    <!--app:contentInsetStart="0dp"-->
+                    <!--app:navigationIcon="@mipmap/scancode"-->
+                    <!--android:fitsSystemWindows="true"-->
+                    <!--&gt;-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/et_search"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="30dp"-->
+                        <!--android:padding="5dp"-->
+                        <!--android:textCursorDrawable="@drawable/appframe_shape_cursor"-->
+                        <!--android:background="@drawable/appframe_shape_edittext_seach"-->
+                        <!--android:hint="营业精灵报账"-->
+                        <!--android:textColorHint="#666666"-->
+                        <!--android:gravity="center_vertical" />-->
+
+                <!--</android.support.v7.widget.Toolbar>-->
+
+            <!--&lt;!&ndash;</android.support.design.widget.CollapsingToolbarLayout>&ndash;&gt;-->
+
+        <!--</android.support.design.widget.AppBarLayout>-->
 
         <include
             android:id="@+id/content"
             layout="@layout/content_scrolling"/>
 
-    </android.support.design.widget.CoordinatorLayout>
+    <!--</android.support.design.widget.CoordinatorLayout>-->
 
     <LinearLayout
         android:id="@+id/ll_bottom_view"
@@ -80,4 +116,4 @@
             android:background="#d0d4d7" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

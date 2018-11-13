@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/parent"
     android:background="@android:color/white">
 
     <RelativeLayout
@@ -77,7 +78,6 @@
 
     </LinearLayout>
 
-
     <EditText
         android:id="@+id/ed_reset_authcode"
         android:layout_width="match_parent"
@@ -91,7 +91,45 @@
         android:background="@drawable/appframe_login_edittext_bg"
         app:layout_constraintTop_toBottomOf="@+id/ll_reset_phone_num"/>
 
-    <EditText
+    <LinearLayout
+        android:id="@+id/ll_reset_new_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appframe_login_edittext_bg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ed_reset_authcode">
+
+        <EditText
+            android:id="@+id/ed_reset_new_pwd"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"
+            android:hint="请输入新密码"
+            android:inputType="textPassword"
+            android:lines="1"/>
+
+        <ImageView
+            android:id="@+id/iv_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请输入新的密码"
+            android:textSize="12sp"
+            android:textColor="#2D8FFD"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:src="@mipmap/ic_eye"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </LinearLayout>
+
+    <!--<EditText
         android:id="@+id/ed_reset_new_pwd"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -101,17 +139,68 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/appframe_login_edittext_bg"
-        app:layout_constraintTop_toBottomOf="@+id/ed_reset_authcode"/>
+        app:layout_constraintTop_toBottomOf="@+id/ed_reset_authcode"/>-->
 
     <TextView
         android:id="@+id/pwd_describe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="密码长度必须大于8位，由数字、小写字母、大写字母、特殊符号4类中至少3类,特殊字符为：~_!@#$%*()"
+        android:text="密码长度不小于8位，必须包含数字、英文字母和特殊字符。特殊字符为：~_!@#$%*()"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/ed_reset_new_pwd"/>
+        app:layout_constraintTop_toBottomOf="@+id/ll_reset_new_pwd"/>
+
+    <LinearLayout
+        android:id="@+id/ll_reset_auto_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appframe_login_edittext_bg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/pwd_describe">
+
+        <EditText
+            android:id="@+id/ed_reset_auto_pwd"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"
+            android:hint="生成随机密码"
+            android:enabled="false"
+            android:lines="1"/>
+
+        <TextView
+            android:id="@+id/tv_reset_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:textColor="#2D8FFD"
+            android:layout_gravity="center_vertical"
+            android:text="拷贝"
+            android:lines="1"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/btn_auto_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="生成密码"
+            android:textSize="12sp"
+            android:textColor="#2D8FFD"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/appframe_login_btn_authcode"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_sure"
@@ -126,7 +215,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwd_describe"
+        app:layout_constraintTop_toBottomOf="@+id/ll_reset_auto_pwd"
         />
 
 </android.support.constraint.ConstraintLayout>

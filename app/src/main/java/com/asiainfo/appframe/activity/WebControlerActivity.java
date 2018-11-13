@@ -16,12 +16,16 @@ import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +33,7 @@ import android.widget.Toast;
 import com.asiainfo.appframe.R;
 import com.asiainfo.appframe.net.ApiClient;
 import com.asiainfo.appframe.receiver.AuthInfoReceicer;
+import com.asiainfo.appframe.utils.CommonUtil;
 import com.asiainfo.appframe.utils.ResourceUtil;
 import com.asiainfo.appframe.utils.SDKUtil;
 import com.asiainfo.appframe.utils.StringUtil;
@@ -55,7 +60,8 @@ public class WebControlerActivity extends BaseActivity implements OverView.Recen
 	//Top level views
 	private OverView mRecentsView;
 	private RelativeLayout mRL_webcontent, mRL_top;
-	private LinearLayout mLL_edit_windows, mLL_back, mLL_finish;
+	private LinearLayout mLL_edit_windows, mLL_finish, ll_more;
+	private RelativeLayout mLL_back;
 	private TextView mTV_title;
 	
 	//data
@@ -92,7 +98,8 @@ public class WebControlerActivity extends BaseActivity implements OverView.Recen
 		mRL_webcontent = (RelativeLayout) findViewById(ResourceUtil.getId(mContext, "rl_webcontent"));
 		mRL_top = (RelativeLayout) findViewById(ResourceUtil.getId(mContext, "rl_top"));
 		mLL_edit_windows = (LinearLayout) findViewById(ResourceUtil.getId(mContext, "ll_edit_windows"));
-		mLL_back = (LinearLayout) findViewById(ResourceUtil.getId(mContext, "ll_back"));
+		ll_more = (LinearLayout) findViewById(ResourceUtil.getId(mContext, "ll_more"));
+		mLL_back = findViewById(ResourceUtil.getId(mContext, "ll_back"));
 		mLL_finish = (LinearLayout) findViewById(ResourceUtil.getId(mContext, "ll_finish"));
 		mTV_title = (TextView) findViewById(ResourceUtil.getId(mContext, "tv_title"));
 		
@@ -112,6 +119,8 @@ public class WebControlerActivity extends BaseActivity implements OverView.Recen
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+
+		initPopupWindow();
 	}
 	
 	@Override
@@ -220,6 +229,41 @@ public class WebControlerActivity extends BaseActivity implements OverView.Recen
 				finish();
 			}
 		});
+
+		ll_more.setOnClickListener(v -> {
+			popupWindow.setWidth(CommonUtil.dip2px(mContext, 100));
+			popupWindow.showAsDropDown(ll_more, 1000, 0);
+		});
+
+	}
+
+	PopupWindow popupWindow;
+
+	private void initPopupWindow(){
+		LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View contentView = inflater.inflate(R.layout.appframe_popup_right_top, null);
+		LinearLayout ll_gohome = contentView.findViewById(R.id.ll_gohome);
+		contentView.setFocusable(true);
+		contentView.setFocusableInTouchMode(true);
+		popupWindow = new PopupWindow(contentView, RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+		popupWindow.setFocusable(true);
+		popupWindow.setOutsideTouchable(false);
+		contentView.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+				if(keyCode == KeyEvent.KEYCODE_BACK){
+					popupWindow.dismiss();
+				}
+
+				return false;
+			}
+		});
+
+		ll_gohome.setOnClickListener(v -> {
+			finish();
+		});
+
 	}
 	
 	@Override
